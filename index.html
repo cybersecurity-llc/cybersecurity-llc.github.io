@@ -3,110 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyber Security LLC | Elite Cyber Digital Protection</title>
+    <title>Cyber Security LLC | Elite Digital Protection</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0a0a0a; /* Slightly off-black */
+            font-family: 'Lexend', sans-serif;
+            background-color: #000000;
+            color: #E0E0E0;
         }
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Roboto Mono', monospace;
+        .gradient-bg {
+            background: radial-gradient(circle at top left, rgba(13, 37, 63, 0.8), transparent 40%),
+                        radial-gradient(circle at bottom right, rgba(12, 53, 106, 0.7), transparent 40%),
+                        #000000;
+            animation: fadeIn 2s ease-in-out;
         }
-        .text-glow {
-            text-shadow: 0 0 8px rgba(56, 189, 248, 0.8);
+        .hero-gradient-text {
+            background: -webkit-linear-gradient(45deg, #38bdf8, #ffffff, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        .card-glow-effect {
-            position: relative;
-            overflow: hidden;
-            border: 1px solid #1f2937;
+        .service-card {
+            background-color: rgba(17, 24, 39, 0.5);
+            border: 1px solid rgba(55, 65, 81, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
-        .card-glow-effect:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(120deg, transparent, rgba(56, 189, 248, 0.3), transparent);
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0, 191, 255, 0.1);
+            border-color: rgba(56, 189, 248, 0.7);
         }
-        .card-glow-effect:hover:before {
-            left: 100%;
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
-        .card-glow-effect:hover {
-            border-color: #38bdf8;
-            transform: translateY(-5px);
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        #matrix-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            opacity: 0.2;
+        .animated-slide {
+            animation: slideInUp 1s ease-out forwards;
         }
     </style>
 </head>
-<body class="bg-gray-900 text-gray-300">
+<body class="antialiased">
 
     <!-- Header & Navigation -->
-    <header class="bg-black/70 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-800">
+    <header class="bg-black/80 backdrop-blur-lg sticky top-0 z-50 border-b border-gray-800/50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-white text-glow">
+            <a href="#" class="text-2xl font-bold text-white">
                 Cyber Security<span class="text-sky-400">.llc</span>
             </a>
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="#about" class="hover:text-sky-400 transition-colors duration-300">About</a>
-                <a href="#services" class="hover:text-sky-400 transition-colors duration-300">Services</a>
-                <a href="#contact" class="hover:text-sky-400 transition-colors duration-300">Contact</a>
+            <div class="hidden md:flex items-center space-x-6 text-sm">
+                <a href="#about" class="text-gray-300 hover:text-sky-400 transition-colors duration-300">About</a>
+                <a href="#services" class="text-gray-300 hover:text-sky-400 transition-colors duration-300">Services</a>
+                <a href="#contact" class="text-gray-300 hover:text-sky-400 transition-colors duration-300">Contact</a>
             </div>
-            
             <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
         </nav>
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
-            <a href="#about" class="block py-2 text-center hover:bg-gray-800 rounded-lg">About Us</a>
-            <a href="#services" class="block py-2 text-center hover:bg-gray-800 rounded-lg">Services</a>
-            <a href="#contact" class="block py-2 text-center hover:bg-gray-800 rounded-lg">Contact</a>
-            <a href="https://github.com/cybersecurity-llc/cyber" target="_blank" class="block mt-2 text-center bg-sky-500 hover:bg-sky-600 text-white font-medium py-2 px-4 rounded-lg">
-                View on GitHub
-            </a>
+            <a href="#about" class="block py-2 text-center text-gray-300 hover:bg-gray-800 rounded-lg">About</a>
+            <a href="#services" class="block py-2 text-center text-gray-300 hover:bg-gray-800 rounded-lg">Services</a>
+            <a href="#contact" class="block py-2 text-center text-gray-300 hover:bg-gray-800 rounded-lg">Contact</a>
         </div>
     </header>
 
     <!-- Main Content -->
     <main>
         <!-- Hero Section -->
-        <section class="py-24 md:py-32 text-center bg-black relative overflow-hidden">
-            <canvas id="matrix-canvas"></canvas>
-            <div class="container mx-auto px-6 relative z-10">
-                <h1 class="text-4xl md:text-6xl font-bold text-white leading-tight mb-4 text-glow">
+        <section class="py-28 md:py-40 text-center gradient-bg relative overflow-hidden">
+            <div class="container mx-auto px-6 relative z-10 animated-slide">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-4 hero-gradient-text">
                     Fortifying Your Digital Frontier
                 </h1>
-                <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-8">
+                <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
                     We provide elite, proactive cybersecurity solutions to protect your organization's most valuable assets from evolving digital threats.
                 </p>
-                
             </div>
         </section>
 
         <!-- About Us Section -->
-        <section id="about" class="py-20 bg-gray-900">
+        <section id="about" class="py-20 md:py-24 bg-black">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white">About Cyber Security<span class="text-sky-400">.llc</span></h2>
-                    <p class="text-gray-400 mt-2">// Pioneers in digital defense</p>
-                    <div class="inline-block w-24 h-1 bg-sky-500 rounded mt-4"></div>
-                </div>
-                <div class="max-w-4xl mx-auto text-center text-gray-300 text-lg leading-relaxed">
-                    <p>
+                <div class="max-w-4xl mx-auto text-center animated-slide">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">About Cyber Security<span class="text-sky-400">.llc</span></h2>
+                    <p class="text-sm text-sky-400 uppercase tracking-widest mb-6">Pioneers in Digital Defense</p>
+                    <p class="text-gray-300 text-lg leading-relaxed">
                         Founded by Aryan Guenthner, Cyber Security LLC was born from a shared mission: to make enterprise-grade security accessible and understandable. We believe the best defense is a proactive one. Our approach combines cutting-edge technology with deep human expertise to anticipate threats before they strike, ensuring your operations remain secure, compliant, and resilient.
                     </p>
                 </div>
@@ -114,72 +107,61 @@
         </section>
 
         <!-- Services Section -->
-        <section id="services" class="py-20 bg-black">
+        <section id="services" class="py-20 md:py-24 bg-gray-900/50">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
+                <div class="text-center mb-16 animated-slide">
                     <h2 class="text-3xl md:text-4xl font-bold text-white">Our Core Services</h2>
-                    <p class="text-gray-400 mt-2">// A comprehensive suite of security solutions</p>
-                    <div class="inline-block w-24 h-1 bg-sky-500 rounded mt-4"></div>
+                    <p class="text-gray-400 mt-2">A comprehensive suite of security solutions.</p>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-                    <!-- Service Card: vCISO -->
-                    <div class="bg-gray-900 p-8 rounded-xl card-glow-effect transition-all duration-300">
-                        <h3 class="text-xl font-bold text-white mb-2 text-sky-400">vCISO</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto animated-slide">
+                    
+                    <!-- Service Cards -->
+                    <div class="service-card p-8 rounded-xl">
+                        <h3 class="text-xl font-semibold text-white mb-3 text-sky-400">vCISO</h3>
                         <p class="text-gray-400">Executive-level security leadership and strategic guidance. We align your security posture with your business goals.</p>
                     </div>
-                    <!-- Service Card: Advanced Cybersecurity Operations -->
-                    <div class="bg-gray-900 p-8 rounded-xl card-glow-effect transition-all duration-300">
-                        <h3 class="text-xl font-bold text-white mb-2 text-sky-400">Cybersecurity Operations</h3>
+                    <div class="service-card p-8 rounded-xl">
+                        <h3 class="text-xl font-semibold text-white mb-3 text-sky-400">Cybersecurity Operations</h3>
                         <p class="text-gray-400">Our SOC provides proactive threat hunting, deep forensic analysis, and managed detection and response (MDR).</p>
                     </div>
-                    <!-- Service Card: Rapid Incident Response -->
-                    <div class="bg-gray-900 p-8 rounded-xl card-glow-effect transition-all duration-300">
-                        <h3 class="text-xl font-bold text-white mb-2 text-sky-400">Rapid Incident Response</h3>
+                    <div class="service-card p-8 rounded-xl">
+                        <h3 class="text-xl font-semibold text-white mb-3 text-sky-400">Rapid Incident Response</h3>
                         <p class="text-gray-400">When a breach occurs, our elite IR team is on standby to contain threats, eradicate attackers, and restore your operations.</p>
                     </div>
-                    <!-- Service Card: Threat Vulnerability Management -->
-                    <div class="bg-gray-900 p-8 rounded-xl card-glow-effect transition-all duration-300">
-                        <h3 class="text-xl font-bold text-white mb-2 text-sky-400">Threat & Vulnerability Management</h3>
+                    <div class="service-card p-8 rounded-xl">
+                        <h3 class="text-xl font-semibold text-white mb-3 text-sky-400">Threat & Vulnerability Management</h3>
                         <p class="text-gray-400">Proactively identify, classify, and remediate vulnerabilities across your digital footprint with continuous scanning.</p>
                     </div>
-                    <!-- Service Card: Penetration Testing -->
-                    <div class="bg-gray-900 p-8 rounded-xl card-glow-effect transition-all duration-300">
-                        <h3 class="text-xl font-bold text-white mb-2 text-sky-400">Penetration Testing</h3>
+                    <div class="service-card p-8 rounded-xl">
+                        <h3 class="text-xl font-semibold text-white mb-3 text-sky-400">Penetration Testing</h3>
                         <p class="text-gray-400">Simulate real-world attacks to uncover critical vulnerabilities in your networks, applications, and infrastructure.</p>
                     </div>
-                    <!-- Service Card: Social Engineering -->
-                    <div class="bg-gray-900 p-8 rounded-xl card-glow-effect transition-all duration-300">
-                        <h3 class="text-xl font-bold text-white mb-2 text-sky-400">Social Engineering</h3>
+                    <div class="service-card p-8 rounded-xl">
+                        <h3 class="text-xl font-semibold text-white mb-3 text-sky-400">Social Engineering</h3>
                         <p class="text-gray-400">Test your human firewall. We assess susceptibility to phishing and other tactics to strengthen your first line of defense.</p>
                     </div>
-                     <!-- Service Card: Cyber Investigations -->
-                    <div class="bg-gray-900 p-8 rounded-xl card-glow-effect transition-all duration-300">
-                        <h3 class="text-xl font-bold text-white mb-2 text-sky-400">Cyber Intelligence</h3>
+                    <div class="service-card p-8 rounded-xl">
+                        <h3 class="text-xl font-semibold text-white mb-3 text-sky-400">Cyber Intelligence</h3>
                         <p class="text-gray-400">Get previously unknown cyber intelligence information about a "special subject".</p>
                     </div>
-                     <!-- Service Card: Social Engineering -->
-                    <div class="bg-gray-900 p-8 rounded-xl card-glow-effect transition-all duration-300">
-                        <h3 class="text-xl font-bold text-white mb-2 text-sky-400">Special Projects</h3>
+                    <div class="service-card p-8 rounded-xl">
+                        <h3 class="text-xl font-semibold text-white mb-3 text-sky-400">Special Projects</h3>
                         <p class="text-gray-400">Inquire for consultation.</p>
                     </div>
-                    <!-- Service Card: Cybersecurity Training -->
-                    <div class="bg-gray-900 p-8 rounded-xl card-glow-effect transition-all duration-300">
-                        <h3 class="text-xl font-bold text-white mb-2 text-sky-400">Specialized Cybersecurity Training</h3>
+                    <div class="service-card p-8 rounded-xl">
+                        <h3 class="text-xl font-semibold text-white mb-3 text-sky-400">Specialized Cybersecurity Training</h3>
                         <p class="text-gray-400">Inquire for consultation.</p>
                     </div>
-                    <!-- Service Card: Current Cyber Security Operations Assessment -->
-                    <div class="bg-gray-900 p-8 rounded-xl card-glow-effect transition-all duration-300">
-                        <h3 class="text-xl font-bold text-white mb-2 text-sky-400">Complete SOC Assessment</h3>
+                    <div class="service-card p-8 rounded-xl">
+                        <h3 class="text-xl font-semibold text-white mb-3 text-sky-400">Complete SOC Assessment</h3>
                         <p class="text-gray-400">Cybersecurity operations effectiveness report. We discover the gaps to make your SOC more efficient.</p>
                     </div>
-                    <!-- Service Card: GRC Incident Response Plan Review -->
-                    <div class="bg-gray-900 p-8 rounded-xl card-glow-effect transition-all duration-300">
-                        <h3 class="text-xl font-bold text-white mb-2 text-sky-400">Incident Response Plan Review</h3>
+                    <div class="service-card p-8 rounded-xl">
+                        <h3 class="text-xl font-semibold text-white mb-3 text-sky-400">Incident Response Plan Review</h3>
                         <p class="text-gray-400">Let us review your Incident Response Plan (IRP).</p>
                     </div>
-                    <!-- Service Card: DarkDeepWeb Review -->
-                    <div class="bg-gray-900 p-8 rounded-xl card-glow-effect transition-all duration-300">
-                        <h3 class="text-xl font-bold text-white mb-2 text-sky-400">Darkweb Investigations</h3>
+                    <div class="service-card p-8 rounded-xl">
+                        <h3 class="text-xl font-semibold text-white mb-3 text-sky-400">Darkweb Investigations</h3>
                         <p class="text-gray-400">We conduct the most comprehensive darkweb deep web investigations.</p>
                     </div>
                 </div>
@@ -187,28 +169,27 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-20 bg-gray-900">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white">Get in Touch</h2>
-                    <p>
-                    <a href="mailto:aryancyber@bugcrowdninja.com">Contact</a>
-                    <p class="text-gray-400 mt-2">// Let's secure your digital future together</p>
-                     <div class="inline-block w-24 h-1 bg-sky-500 rounded mt-4"></div>
-                </div>
+        <section id="contact" class="py-20 md:py-24 bg-black">
+            <div class="container mx-auto px-6 animated-slide">
                 <div class="max-w-xl mx-auto text-center flex flex-col items-center">
-                    <p class="text-gray-300 mb-8">
-                        Ready to elevate your security posture? Contact our team for a confidential consultation. Scan the QR code below to connect on LinkedIn.
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Get in Touch</h2>
+                    <p class="text-gray-400 mt-2 mb-8">Let's secure your digital future together.</p>
+                    <p class="text-gray-300 mb-6">
+                         Ready to elevate your security posture? Contact us for a confidential consultation. 
                     </p>
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://www.linkedin.com/in/aryancyber" alt="LinkedIn QR Code" class="bg-white p-2 rounded-lg">
+                    <a href="mailto:aryancyber@bugcrowdninja.com" class="text-sky-400 hover:text-sky-300 text-lg mb-8 transition-colors duration-300">aryancyber@bugcrowdninja.com</a>
+                    <p class="text-gray-300 mb-4">
+                        Or scan the QR code below to connect on LinkedIn.
+                    </p>
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://www.linkedin.com/in/aryancyber&bgcolor=000000&color=e0e0e0&qzone=1" alt="LinkedIn QR Code" class="bg-black border border-gray-700 p-2 rounded-lg">
                 </div>
             </div>
         </section>
     </main>
     
     <!-- Footer -->
-    <footer class="bg-black border-t border-gray-800">
-        <div class="container mx-auto px-6 py-6 text-center text-gray-500">
+    <footer class="bg-black border-t border-gray-800/50">
+        <div class="container mx-auto px-6 py-6 text-center text-gray-500 text-sm">
             <p>&copy; 2024 Cyber Security LLC. All Rights Reserved.</p>
         </div>
     </footer>
@@ -224,56 +205,21 @@
             link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
         }
 
-        // Matrix rain effect
-        const canvas = document.getElementById('matrix-canvas');
-        const ctx = canvas.getContext('2d');
-
-        let resizeTimer;
-        function setCanvasDimensions() {
-            canvas.width = window.innerWidth;
-            canvas.height = canvas.parentElement.offsetHeight;
-        }
-
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(setCanvasDimensions, 250);
-            location.reload(); // Simple solution to redraw on resize
-        });
-        
-        setCanvasDimensions();
-
-        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
-        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        const nums = '0123456789';
-        const alphabet = katakana + latin + nums;
-
-        const fontSize = 16;
-        const columns = canvas.width / fontSize;
-        const rainDrops = [];
-
-        for (let x = 0; x < columns; x++) {
-            rainDrops[x] = 1;
-        }
-
-        const draw = () => {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            ctx.fillStyle = '#059669'; // Emerald green color for the text
-            ctx.font = fontSize + 'px monospace';
-
-            for (let i = 0; i < rainDrops.length; i++) {
-                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
-
-                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    rainDrops[i] = 0;
+        // Add scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated-slide');
                 }
-                rainDrops[i]++;
-            }
-        };
+            });
+        }, {
+            threshold: 0.1
+        });
 
-        setInterval(draw, 30);
+        document.querySelectorAll('section > div').forEach(el => {
+            observer.observe(el);
+        });
+
     </script>
 
 </body>
