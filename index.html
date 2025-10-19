@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cyber Security LLC | Elite Digital Protection</title>
+    
+    <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="%2338bdf8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.6-3.751A11.959 11.959 0 0112 2.714v.001z" /></svg>'>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,6 +27,8 @@
             background: -webkit-linear-gradient(45deg, #38bdf8, #ffffff, #818cf8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+             /* Add padding to ensure gradient covers descenders */
+             padding-bottom: 0.1em; /* Adjust as needed */
         }
         .service-card {
             background-color: rgba(17, 24, 39, 0.5);
@@ -56,11 +61,10 @@
 </head>
 <body class="antialiased">
 
-    <!-- Header & Navigation -->
     <header class="bg-black/80 backdrop-blur-lg sticky top-0 z-50 border-b border-gray-800/50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" class="text-2xl font-bold text-white">
-                Cyber Security<span class="text-sky-400">.llc</span>
+                Cyber Security<span class="text-sky-400"> LLC</span>
             </a>
             <div class="hidden md:flex items-center space-x-6 text-sm">
                 <a href="#about" class="text-gray-300 hover:text-sky-400 transition-colors duration-300">About</a>
@@ -72,7 +76,6 @@
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
         </nav>
-        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
             <a href="#about" class="block py-2 text-center text-gray-300 hover:bg-gray-800 rounded-lg">About</a>
             <a href="#services" class="block py-2 text-center text-gray-300 hover:bg-gray-800 rounded-lg">Services</a>
@@ -81,29 +84,27 @@
         </div>
     </header>
 
-    <!-- Main Content -->
     <main>
-        <!-- Hero Section -->
         <section class="py-28 md:py-40 text-center gradient-bg relative overflow-hidden">
             <div class="container mx-auto px-6 relative z-10 animated-slide">
-                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-4 hero-gradient-text">
-                    Enabling Secure Business
-                 <br>
-                 </br>
+                
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold leading-relaxed mb-4 flex items-center justify-center flex-wrap">
+                    <span class="hero-gradient-text">Enabling Secure Business</span>
+                    <svg class="h-8 w-8 md:h-10 md:w-10 lg:h-12 lg:w-12 text-sky-400 ml-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.6-3.751A11.959 11.959 0 0112 2.714v.001z" />
+                    </svg>
                 </h1>
-                <br>
-                </br>
-                <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
+
+                <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mt-6">
                     We provide elite, proactive cybersecurity solutions to protect your organization's most valuable assets from evolving digital threats.
                 </p>
             </div>
         </section>
 
-        <!-- About Us Section -->
         <section id="about" class="py-20 md:py-24 bg-black">
             <div class="container mx-auto px-6">
                 <div class="max-w-4xl mx-auto text-center animated-slide">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">About Cyber Security<span class="text-sky-400">.llc</span></h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">About Cyber Security<span class="text-sky-400"> LLC</span></h2>
                     <p class="text-sm text-sky-400 uppercase tracking-widest mb-6">Pioneers in Digital Defense</p>
                     <p class="text-gray-300 text-lg leading-relaxed">
                         Founded by Aryan Guenthner, Cyber Security LLC was born from a shared mission: to make enterprise-grade security accessible and understandable. We believe the best defense is a proactive one. Our approach combines cutting-edge technology with deep human expertise to anticipate threats before they strike, ensuring your operations remain secure, compliant, and resilient.
@@ -112,7 +113,6 @@
             </div>
         </section>
 
-        <!-- Services Section -->
         <section id="services" class="py-20 md:py-24 bg-gray-900/50">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16 animated-slide">
@@ -121,7 +121,6 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto animated-slide">
                     
-                    <!-- Service Cards -->
                     <div class="service-card p-8 rounded-xl">
                         <h3 class="text-xl font-semibold text-white mb-3 text-sky-400">vCISO</h3>
                         <p class="text-gray-400">Executive-level security leadership and strategic guidance. We align your security posture with your business goals.</p>
@@ -170,11 +169,18 @@
                         <h3 class="text-xl font-semibold text-white mb-3 text-sky-400">Darkweb Investigations</h3>
                         <p class="text-gray-400">We conduct the most comprehensive darkweb deep web investigations.</p>
                     </div>
-                </div>
+                    <div class="service-card p-8 rounded-xl">
+                        <h3 class="text-xl font-semibold text-white mb-3 text-sky-400">Physical Security Assessment</h3>
+                        <p class="text-gray-400">Make sure your physical security is solid. We always get in.</p>
+                    </div>
+                    <div class="service-card p-8 rounded-xl">
+                        <h3 class="text-xl font-semibold text-white mb-3 text-sky-400">Honey Traps</h3>
+                        <p class="text-gray-400">Is your wife, mistress, husband, boyfriend, or girlfriend being Loyal? We can prove it.</p>
+                    </div>
+                    </div>
             </div>
         </section>
         
-        <!-- Careers Section -->
         <section id="careers" class="py-20 md:py-24 bg-black">
             <div class="container mx-auto px-6 animated-slide">
                 <div class="max-w-4xl mx-auto text-center">
@@ -183,13 +189,12 @@
                     <a href="https://docs.google.com/forms/d/e/1FAIpQLScP0mT8-r1G9Lf9M17IyHAF1Uwp2VV9YbjEWjDdWJxWwLNMbA/viewform?usp=preview" target="_blank" class="inline-block bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-8 rounded-lg text-lg transition-transform duration-300 hover:scale-105">
                         Apply Now
                     </a>
-                    <p class="text-gray-500 text-sm mt-4"
+                    <p class="text-gray-500 text-sm mt-4">
                     </p>
                 </div>
             </div>
         </section>
 
-        <!-- Contact Section -->
         <section id="contact" class="py-20 md:py-24 bg-gray-900/50">
             <div class="container mx-auto px-6 animated-slide">
                 <div class="max-w-xl mx-auto text-center flex flex-col items-center">
@@ -208,10 +213,9 @@
         </section>
     </main>
     
-    <!-- Footer -->
     <footer class="bg-black border-t border-gray-800/50">
         <div class="container mx-auto px-6 py-6 text-center text-gray-500 text-sm">
-            <p>&copy; 2024 Cyber Security LLC. All Rights Reserved.</p>
+             <p>&copy; 2025 Cyber Security LLC. All Rights Reserved.</p>
         </div>
     </footer>
 
@@ -245,4 +249,3 @@
 
 </body>
 </html>
-
