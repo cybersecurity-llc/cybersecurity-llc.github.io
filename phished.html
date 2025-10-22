@@ -10,24 +10,30 @@
             const FORM_ENDPOINT = "https://formspree.io/f/mldpylrb";
 
             // 2. SET YOUR TRAINING PAGE URL
-            const TRAINING_PAGE_URL = "https://cybersecurity-llc.github.io/cybersecurity-awareness.html";
+            const TRAINING_PAGE_URL = "https://cybersecurity-llc.github.io/training-signup.html";
 
             // --- End of Configuration ---
 
             // This function runs immediately
             async function logAndRedirect() {
                 try {
-                    // We can capture the User-Agent with JavaScript
-                    const userAgent = navigator.userAgent;
+                    // 1. Fetch IP and Geolocation data first
+                    const geoResponse = await fetch("https://ipapi.co/json/");
+                    const geoData = await geoResponse.json();
 
-                    // Create a data object to send
+                    // 2. Create a data object to send
                     const formData = new FormData();
-                    formData.append("click_event", "User clicked the link");
-                    formData.append("user_agent", userAgent);
-                    // Note: You don't need to add the IP. 
-                    // Formspree captures it automatically.
+                    
+                    // Add all the useful data to the form
+                    formData.append("phishing_click_event", "User clicked the link");
+                    formData.append("ip_address", geoData.ip);
+                    formData.append("city", geoData.city);
+                    formData.append("region", geoData.region);
+                    formData.append("country", geoData.country_name);
+                    formData.append("isp", geoData.org);
+                    formData.append("user_agent", navigator.userAgent);
 
-                    // Send the data to your Formspree endpoint
+                    // 3. Send all captured data to your Formspree endpoint
                     await fetch(FORM_ENDPOINT, {
                         method: 'POST',
                         body: formData,
@@ -41,7 +47,7 @@
                     // so the user experience isn't broken.
                     console.error("Error logging click:", error);
                 } finally {
-                    // ALWAYS redirect the user to the training page
+                    // 4. ALWAYS redirect the user to the training page
                     window.location.href = TRAINING_PAGE_URL;
                 }
             }
