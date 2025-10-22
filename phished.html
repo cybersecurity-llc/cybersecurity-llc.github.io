@@ -6,34 +6,50 @@
         (function() {
             // --- Configuration ---
             
-            // 1. PASTE YOUR FORMPSREE ENDPOINT URL HERE
+            // 1. YOUR FORMPSREE ENDPOINT
             const FORM_ENDPOINT = "https://formspree.io/f/mldpylrb";
 
-            // 2. SET YOUR TRAINING PAGE URL
-            const TRAINING_PAGE_URL = "https://cybersecurity-llc.github.io/training-signup.html";
+            // 2. YOUR TRAINING PAGE URL
+            const TRAINING_PAGE_URL = "https://cybersecurity-llc.github.io/cybersecurity-awareness.html";
 
             // --- End of Configuration ---
 
             // This function runs immediately
             async function logAndRedirect() {
-                try {
-                    // 1. Fetch IP and Geolocation data first
-                    const geoResponse = await fetch("https://ipapi.co/json/");
-                    const geoData = await geoResponse.json();
+                
+                let geoData = {}; // Initialize an empty object
 
-                    // 2. Create a data object to send
+                try {
+                    // 1. FIRST, try to fetch IP and Geolocation data
+                    const geoResponse = await fetch("https://ipapi.co/json/");
+                    geoData = await geoResponse.json();
+
+                } catch (geoError) {
+                    // If geo-lookup fails, log it and prepare default error data
+                    console.error("Geolocation fetch failed:", geoError);
+                    geoData = {
+                        ip: "Geo-Lookup Failed",
+                        city: "Geo-Lookup Failed",
+                        region: "Geo-Lookup Failed",
+                        country_name: "Geo-Lookup Failed",
+                        org: "Geo-Lookup Failed"
+                    };
+                }
+
+                try {
+                    // 2. SECOND, create a data object to send
+                    // This code will run whether the geo-lookup succeeded or failed
                     const formData = new FormData();
                     
-                    // Add all the useful data to the form
                     formData.append("phishing_click_event", "User clicked the link");
                     formData.append("ip_address", geoData.ip);
                     formData.append("city", geoData.city);
                     formData.append("region", geoData.region);
                     formData.append("country", geoData.country_name);
                     formData.append("isp", geoData.org);
-                    formData.append("user_agent", navigator.userAgent);
+                    formData.append("user_agent", navigator.userAgent); // Always captured
 
-                    // 3. Send all captured data to your Formspree endpoint
+                    // 3. THIRD, send all captured data to your Formspree endpoint
                     await fetch(FORM_ENDPOINT, {
                         method: 'POST',
                         body: formData,
@@ -42,12 +58,12 @@
                         }
                     });
 
-                } catch (error) {
-                    // Log any errors to the console, but redirect anyway
-                    // so the user experience isn't broken.
-                    console.error("Error logging click:", error);
+                } catch (formError) {
+                    // Log errors from Formspree, but redirect anyway
+                    console.error("Formspree submission failed:", formError);
                 } finally {
-                    // 4. ALWAYS redirect the user to the training page
+                    // 4. FINALLY, always redirect the user
+                    // This ensures the user is redirected even if Formspree fails
                     window.location.href = TRAINING_PAGE_URL;
                 }
             }
