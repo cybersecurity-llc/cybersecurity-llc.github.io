@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Loading...</title>
+    <script>
+        (function() {
+            // --- Configuration ---
+            
+            // 1. PASTE YOUR FORMPSREE ENDPOINT URL HERE
+            const FORM_ENDPOINT = "https://formspree.io/f/mldpylrb";
+
+            // 2. SET YOUR TRAINING PAGE URL
+            const TRAINING_PAGE_URL = "https://cybersecurity-llc.github.io/cybersecurity-awareness.html";
+
+            // --- End of Configuration ---
+
+            // This function runs immediately
+            async function logAndRedirect() {
+                try {
+                    // We can capture the User-Agent with JavaScript
+                    const userAgent = navigator.userAgent;
+
+                    // Create a data object to send
+                    const formData = new FormData();
+                    formData.append("click_event", "User clicked the link");
+                    formData.append("user_agent", userAgent);
+                    // Note: You don't need to add the IP. 
+                    // Formspree captures it automatically.
+
+                    // Send the data to your Formspree endpoint
+                    await fetch(FORM_ENDPOINT, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                } catch (error) {
+                    // Log any errors to the console, but redirect anyway
+                    // so the user experience isn't broken.
+                    console.error("Error logging click:", error);
+                } finally {
+                    // ALWAYS redirect the user to the training page
+                    window.location.href = TRAINING_PAGE_URL;
+                }
+            }
+
+            // Run the function
+            logAndRedirect();
+        })();
+    </script>
+</head>
+<body>
+    <p>Loading, please wait...</p>
+</body>
+</html>
