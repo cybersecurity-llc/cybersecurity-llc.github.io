@@ -29,14 +29,14 @@
     <div class="grid" role="region" aria-label="Enrollment area">
       <div class="panel" id="infoPanel" aria-live="polite">
         <h2 style="margin-top:0">What happened</h2>
-        <p>If you clicked the link in the test email, we recorded that action for training purposes. No credentials were requested or recorded. This helps us measure awareness and provide targeted training.</p>
+        <p>If you clicked the link in the email, we recorded that action for training purposes. This helps us measure awareness and provide targeted training.</p>
 
-        <h3 style="margin-bottom:6px">What we logged</h3>
+        <h3 style="margin-bottom:6px">Do not open attachments or click links, or anything with a sense of urgency!</h3>
         <ul style="margin:0 0 12px 18px;color:var(--muted)">
-          <li>Timestamp (UTC)</li>
-          <li>IP address (for audit & geolocation)</li>
-          <li>User-Agent (browser/device)</li>
-          <li>Campaign token</li>
+          <li>Report Phishing Emails Immediately</li>
+          <li>If the email is suspicious, delicious or malicious report it!</li>
+          <li>Don't get Hacked!</li>
+          <li>Be Cyber Strong</li>
         </ul>
 
         <div class="cta">
@@ -57,8 +57,8 @@
           <svg width="76" height="76" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="margin-bottom:8px">
             <path d="M12 2L2 7v7c0 5 3.8 9.4 10 11 6.2-1.6 10-6 10-11V7l-10-5z" stroke="currentColor" stroke-width="0.6" opacity="0.8"/>
           </svg>
-          <div id="statusText" style="font-weight:600;margin-bottom:6px">Click recorded</div>
-          <div style="color:var(--muted);font-size:0.95rem" id="subText">We logged your click for training assignment.</div>
+          <div id="statusText" style="font-weight:600;margin-bottom:6px">Training recorded</div>
+          <div style="color:var(--muted);font-size:0.95rem" id="subText">We logged the completion of your training assignment.</div>
         </div>
       </div>
     </div>
@@ -70,8 +70,8 @@
      * - TRACKING_URL: your server endpoint that will accept token (GET/POST) and log IP/UA/timestamp
      * - This page expects a query param "t" (token) e.g. ?t=UUID-OR-HMAC
      */
-    const TRACKING_URL = 'https://YOUR_TRACKING_URL.example.com/track'; // <-- REPLACE with your tracking endpoint
-    const LMS_ENROLL_URL = 'https://lms.yourdomain.com/enroll'; // optional: LMS enrollment link or API proxy
+    const TRACKING_URL = 'https://cybersecurity-llc.github.io/track'; // <-- REPLACE with your tracking endpoint
+    const LMS_ENROLL_URL = 'https://lms.cybersecurity-llc.github.io/enroll'; // optional: LMS enrollment link or API proxy
     const RETENTION_DAYS = 180;
 
     // Utility to read query params (token)
