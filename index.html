@@ -123,11 +123,11 @@
                     
                     <div class="service-card p-8 rounded-xl">
                         <h3 class="text-xl font-semibold text-white mb-3 text-sky-400">vCISO</h3>
-                        <p class="text-gray-400">Executive-level security leadership and strategic guidance. We align your security posture with your business goals.</p>
+                        <p class="text-gray-400">Executive-level security leadership and strategic advisory guidance. We align your security posture with your business goals.</p>
                     </div>
                     <div class="service-card p-8 rounded-xl">
                         <h3 class="text-xl font-semibold text-white mb-3 text-sky-400">Cybersecurity Operations</h3>
-                        <p class="text-gray-400">Our SOC provides proactive threat hunting, deep forensic analysis, and managed detection and response (MDR).</p>
+                        <p class="text-gray-400">Our SOC service provides proactive threat hunting, deep forensic analysis, and managed detection and response (MDR).</p>
                     </div>
                     <div class="service-card p-8 rounded-xl">
                         <h3 class="text-xl font-semibold text-white mb-3 text-sky-400">Rapid Incident Response</h3>
@@ -147,7 +147,7 @@
                     </div>
                     <div class="service-card p-8 rounded-xl">
                         <h3 class="text-xl font-semibold text-white mb-3 text-sky-400">Cyber Intelligence</h3>
-                        <p class="text-gray-400">Get previously unknown cyber intelligence information about a "special subject".</p>
+                        <p class="text-gray-400">Get previously unknown cyber intelligence information about a "special subject or person".</p>
                     </div>
                     <div class="service-card p-8 rounded-xl">
                         <h3 class="text-xl font-semibold text-white mb-3 text-sky-400">Special Projects</h3>
@@ -159,7 +159,7 @@
                     </div>
                     <div class="service-card p-8 rounded-xl">
                         <h3 class="text-xl font-semibold text-white mb-3 text-sky-400">Complete SOC Assessment</h3>
-                        <p class="text-gray-400">Cybersecurity operations effectiveness report. We discover the gaps to make your SOC more efficient.</p>
+                        <p class="text-gray-400">Cybersecurity operations effectiveness review. We discover the gaps to make your SOC more efficient.</p>
                     </div>
                     <div class="service-card p-8 rounded-xl">
                         <h3 class="text-xl font-semibold text-white mb-3 text-sky-400">Incident Response Plan Review</h3>
@@ -175,7 +175,7 @@
                     </div>
                     <div class="service-card p-8 rounded-xl">
                         <h3 class="text-xl font-semibold text-white mb-3 text-sky-400">Honey Traps</h3>
-                        <p class="text-gray-400">Is your wife, mistress, husband, boyfriend or girlfriend being Loyal? We can prove it.</p>
+                        <p class="text-gray-400">Is your wife, mistress, husband, boyfriend or girlfriend being loyal? We can prove it.</p>
                     </div>
                     </div>
             </div>
@@ -247,5 +247,160 @@
 
     </script>
 
+    <!-- ======== ANALYTICS SCRIPT (v5 with H:M:S Duration) ======== -->
+    <script>
+        // --- DEFINE PAGE-SPECIFIC AND SESSION-WIDE VARIABLES ---
+        
+        // 1. (NEW) SET A NAME FOR THIS PAGE
+        const PAGE_NAME = "index"; // Set for index.html
+        
+        // 2. Capture the exact start time
+        const startTime = new Date();
+        
+        // 3. Generate a simple unique ID for this session
+        const sessionId = Math.random().toString(36).substring(2, 15);
+        
+        // 4. This is the NEW Google Script URL you provided
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz3LLz0rggYnztvZdFZNBf5rU-OiXSDM8GAi6kZT7U9_91N5U5QhycRYdXXgz1o4rElSA/exec";
+
+        /***********************
+         * Helper: fetch geo/ip safely
+         ***********************/
+        async function fetchGeo() {
+            try {
+                const res = await fetch('https://ipapi.co/json/');
+                if (!res.ok) throw new Error('geo failed');
+                return await res.json();
+            } catch (e) {
+                return {
+                    ip: 'lookup_failed',
+                    city: 'lookup_failed',
+                    region: 'lookup_failed',
+                    country_name: 'lookup_failed',
+                    org: 'lookup_failed'
+                };
+            }
+        }
+
+        /***********************
+         * Helper: send initial data (on load)
+         ***********************/
+        async function sendInitialData(payloadObj) {
+            if (!SCRIPT_URL.startsWith("https://script.google.com/")) {
+                console.error("SCRIPT_URL is not set. Data not sent.");
+                return;
+            }
+            try {
+                await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'cors',
+                    credentials: 'omit',
+                    headers: {
+                        'Content-Type': 'text/plain;charset=utf-8',
+                    },
+                    body: JSON.stringify(payloadObj)
+                });
+                console.log("Analytics view sent.");
+            } catch (err) {
+                console.error('Google Script error (initial data).', err);
+            }
+        }
+        
+        /***********************
+         * Main flow (on page load)
+         ***********************/
+        window.onload = async () => {
+            try {
+                // 1. Get Geo/IP info
+                const geo = await fetchGeo();
+                
+                // 2. Get PST Timestamp
+                const pstTimestamp = new Date().toLocaleString("en-US", {
+                    timeZone: "America/Los_Angeles",
+                    year: 'numeric', month: '2-digit', day: '2-digit',
+                    hour: '2-digit', minute: '2-digit', second: '2-digit',
+                    hour12: true
+                });
+
+                // 3. Assemble payload
+                const payload = {
+                    timestamp_pst: pstTimestamp,
+                    ip_address: geo.ip,
+                    city: geo.city,
+                    region: geo.region,
+                    country: geo.country_name,
+                    isp: geo.org,
+                    user_agent: navigator.userAgent,
+                    session_id: sessionId,
+                    page: PAGE_NAME, 
+                    referrer: document.referrer || 'direct' 
+                };
+
+                // 4. Send initial data
+                sendInitialData(payload).catch((err) => {
+                    console.error("Failed to send analytics:", err);
+                });
+
+            } catch (err) {
+                console.error("Error capturing analytics:", err);
+            }
+        };
+
+        /***********************
+         * NEW: Helper to format seconds
+         ***********************/
+        function formatDuration(totalSeconds) {
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+
+            return `${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        /***********************
+         * Updated flow (on page leave)
+         ***********************/
+        
+        let durationSent = false;
+
+        function sendDuration() {
+            if (durationSent) return; 
+            
+            try {
+                const endTime = new Date();
+                const durationInSeconds = Math.round((endTime - startTime) / 1000);
+                
+                if (durationInSeconds < 2) return; 
+
+                // (MODIFIED) Format the duration string
+                const formattedDuration = formatDuration(durationInSeconds);
+
+                // (MODIFIED) Send the formatted string
+                const durationPayload = {
+                    session_id: sessionId,
+                    duration_sec: formattedDuration // Key is same, value is new string
+                };
+                
+                const blob = new Blob([JSON.stringify(durationPayload)], { type: 'text/plain;charset=utf-8' });
+                navigator.sendBeacon(SCRIPT_URL, blob);
+                
+                durationSent = true; 
+                console.log(`Session ended. Duration: ${formattedDuration}`);
+
+            } catch (err) {
+                console.error("Error sending duration:", err);
+            }
+        }
+
+        window.addEventListener('beforeunload', sendDuration);
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'hidden') {
+                sendDuration();
+            }
+        });
+    </script>
+    <!-- ======== END OF SCRIPT BLOCK ======== -->
+
 </body>
 </html>
+
